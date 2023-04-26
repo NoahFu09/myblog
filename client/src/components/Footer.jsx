@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+// import Logo from '../img/logo.png';
 
 const Footer = () => {
-  return (
-    <div>Footer</div>
-  )
-}
+    return (
+        <footer>
+            {/* <img src={Logo} alt="" /> */}
+            <span>Copyright © [2023] [Kangsen]. All rights reserved.</span>
+        </footer>
+    );
+};
 
-export default Footer
+export default Footer;

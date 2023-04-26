@@ -16,8 +16,8 @@ const Navbar = () => {
                     <Link className="link" to="/?cat=post">
                         <h6>程式筆記</h6>
                     </Link>
-                    <Link className="link" to="/?cat=design">
-                        <h6>研究</h6>
+                    <Link className="link" to="/?cat=music">
+                        <h6>音樂</h6>
                     </Link>
                     <Link className="link" to="/?cat=food">
                         <h6>食物</h6>
