@@ -7,19 +7,19 @@ const Home = () => {
             id: 1,
             title: 'Lorem ipsum dolor sit amet',
             desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quidem magni sit aspernatur voluptatem quisquam, similique sequi odit nihil quasi',
-            img: 'https://placehold.it/600x400/000000/0000FF?text=React',
+            img: 'https://source.unsplash.com/featured/300x203',
         },
         {
             id: 2,
             title: 'Lorem ipsum dolor sit amet',
             desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quidem magni sit aspernatur voluptatem quisquam, similique sequi odit nihil quasi',
-            img: 'https://placehold.it/600x400/000000/0000FF?text=Nodejs',
+            img: 'https://source.unsplash.com/featured/600x400',
         },
         {
             id: 3,
             title: 'Lorem ipsum dolor sit amet',
             desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quidem magni sit aspernatur voluptatem quisquam, similique sequi odit nihil quasi',
-            img: 'https://placehold.it/600x400/000000/0000FF?text=Mysql',
+            img: 'https://source.unsplash.com/featured/800x600',
         },
     ];
 
