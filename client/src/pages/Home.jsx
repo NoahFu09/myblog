@@ -6,7 +6,7 @@ const Home = () => {
         {
             id: 1,
             title: 'Lorem ipsum dolor sit amet',
-            desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quidem magni sit aspernatur voluptatem quisquam, similique sequi odit nihil quasi',
+            desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ut, quisquam deserunt reprehenderit minima eaque dolorem ea, delectus cupiditate, ',
             img: 'https://source.unsplash.com/featured/300x203',
         },
         {
@@ -34,9 +34,9 @@ const Home = () => {
                         <div className="content">
                             <Link className="link" to={`/post/${post.id}`}>
                                 <h1>{post.title}</h1>
-                                <p>{post.desc}</p>
-                                <button>看完整文章</button>
                             </Link>
+                            <p>{post.desc}</p>
+                            <button>看完整文章</button>
                         </div>
                     </div>
                 ))}
