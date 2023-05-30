@@ -351,6 +351,28 @@ $lightBrown: #f1e6dd;
                         text-decoration: underline;
                         cursor: pointer;
                     }
+
+                    .buttons{
+                        //display: flex;
+                        //justify-content: space-around;
+
+                        :first-child{
+                            cursor: pointer;
+                            background-color: white;
+                            color: teal;
+                            border: 1px solid teal;
+                            padding: 3px 5px;
+                            margin-right: 5px;
+                        }
+
+                        :last-child{
+                            cursor: pointer;
+                            background-color: teal;
+                            color: white;
+                            border: 1px solid teal;
+                            padding: 3px 5px;
+                        }
+                    }
                 }
             }
         }
