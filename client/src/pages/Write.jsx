@@ -34,16 +34,26 @@ const Write = () => {
                 </div>
                 <div className="item">
                     <h1>分類</h1>
-                    <input type="radio" name="cat" value="cinema" id="cinema" />
-                    <label htmlFor="cinema">觀影心得</label>
-                    <input type="radio" name="cat" value="design" id="design" />
-                    <label htmlFor="design">程式開發</label>
-                    <input type="radio" name="cat" value="music" id="music" />
-                    <label htmlFor="music">音樂分享</label>
-                    <input type="radio" name="cat" value="food" id="food" />
-                    <label htmlFor="food">美食分享</label>
-                    <input type="radio" name="cat" value="technology" id="technology" />
-                    <label htmlFor="technology">科技探索</label>
+                    <div className="cat">
+                        <input type="radio" name="cat" value="cinema" id="cinema" />
+                        <label htmlFor="cinema">觀影心得</label>
+                    </div>
+                    <div className="cat">
+                        <input type="radio" name="cat" value="design" id="design" />
+                        <label htmlFor="design">程式開發</label>
+                    </div>
+                    <div className="cat">
+                        <input type="radio" name="cat" value="music" id="music" />
+                        <label htmlFor="music">音樂分享</label>
+                    </div>
+                    <div className="cat">
+                        <input type="radio" name="cat" value="food" id="food" />
+                        <label htmlFor="food">美食分享</label>
+                    </div>
+                    <div className="cat">
+                        <input type="radio" name="cat" value="technology" id="technology" />
+                        <label htmlFor="technology">科技探索</label>
+                    </div>
                 </div>
             </div>
         </div>

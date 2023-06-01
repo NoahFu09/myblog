@@ -352,11 +352,11 @@ $lightBrown: #f1e6dd;
                         cursor: pointer;
                     }
 
-                    .buttons{
+                    .buttons {
                         //display: flex;
                         //justify-content: space-around;
 
-                        :first-child{
+                        :first-child {
                             cursor: pointer;
                             background-color: white;
                             color: teal;
@@ -365,13 +365,20 @@ $lightBrown: #f1e6dd;
                             margin-right: 5px;
                         }
 
-                        :last-child{
+                        :last-child {
                             cursor: pointer;
                             background-color: teal;
                             color: white;
                             border: 1px solid teal;
                             padding: 3px 5px;
                         }
+                    }
+
+                    .cat {
+                        display: flex;
+                        align-items: center;
+                        gap: 2px;
+                        color: teal;
                     }
                 }
             }
