@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const Register = () => {
@@ -10,6 +10,10 @@ const Register = () => {
         password: '',
     });
 
+    const [err, setError] = useState(null);
+
+    const navigate = useNavigate();
+
     const handleChange = e => {
         setInputs(prev => ({ ...prev, [e.target.name]: e.target.value }));
     };
@@ -18,24 +22,24 @@ const Register = () => {
         e.preventDefault();
         //為了不要在 這邊寫 localhost:8800身份驗證, 在 package.json 定義 proxy
         try {
-            const res = await axios.post('/auth/register', inputs);
-            console.log(res);
+            await axios.post('/auth/register', inputs);
+            navigate('/login');
         } catch (err) {
-            console.log(err);
+            setError(err.response.data);
         }
     };
 
-    console.log(inputs);
+    // console.log(inputs);
 
     return (
         <div className="auth">
-            <h1>Register</h1>
+            <h1>會員註冊</h1>
             <form>
                 <input required type="text" placeholder="username" name="username" onChange={handleChange} />
                 <input required type="email" placeholder="email" name="email" onChange={handleChange} />
                 <input required type="password" placeholder="password" name="password" onChange={handleChange} />
-                <button onClick={handleSubmit}>Register</button>
-                <p>This is an error!</p>
+                <button onClick={handleSubmit}>註冊</button>
+                {err && <p>{err}</p>}
                 <span>
                     Do you have an account?<Link to="/login">Login</Link>
                 </span>
