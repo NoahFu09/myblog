@@ -1,5 +1,6 @@
 import { db } from '../db.js';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 export const register = (req, res) => {
     //檢查 USER 是否存在
@@ -37,6 +38,12 @@ export const login = (req, res) => {
         const isPasswordCorrect = bcrypt.compareSync(req.body.password, data[0].password); // true
 
         if (!isPasswordCorrect) return res.status(400).json('錯誤的帳號或密碼!');
+
+        const token = jwt.sign({ id: data[0].id }, 'jwtkey');
+        const { password, ...other } = data[0];
+
+        //只有透過API才可以取到 access_token
+        res.cookie('access_token', token, { httpOnly: true }).status(200).json(other);
     });
 };
 
