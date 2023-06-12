@@ -21,7 +21,6 @@ const Login = () => {
         e.preventDefault();
         //為了不要在 這邊寫 localhost:8800身份驗證, 在 package.json 定義 proxy
         try {
-            await axios.post('/auth/login', inputs);
             navigate('/');
         } catch (err) {
             setError(err.response.data);
