@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { AuthContext } from '../context/authContext';
 
 const Login = () => {
     const [inputs, setInputs] = useState({
@@ -13,6 +14,8 @@ const Login = () => {
 
     const navigate = useNavigate();
 
+    const { login } = useContext(AuthContext);
+
     const handleChange = e => {
         setInputs(prev => ({ ...prev, [e.target.name]: e.target.value }));
     };
@@ -21,6 +24,7 @@ const Login = () => {
         e.preventDefault();
         //為了不要在 這邊寫 localhost:8800身份驗證, 在 package.json 定義 proxy
         try {
+            await login(inputs);
             navigate('/');
         } catch (err) {
             setError(err.response.data);
