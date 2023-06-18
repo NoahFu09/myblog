@@ -1,27 +1,45 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 const Home = () => {
-    const posts = [
-        {
-            id: 1,
-            title: 'Lorem ipsum dolor sit amet',
-            desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ut, quisquam deserunt reprehenderit minima eaque dolorem ea, delectus cupiditate, ',
-            img: 'https://source.unsplash.com/featured/300x203',
-        },
-        {
-            id: 2,
-            title: 'Lorem ipsum dolor sit amet',
-            desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quidem magni sit aspernatur voluptatem quisquam, similique sequi odit nihil quasi',
-            img: 'https://source.unsplash.com/featured/600x400',
-        },
-        {
-            id: 3,
-            title: 'Lorem ipsum dolor sit amet',
-            desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quidem magni sit aspernatur voluptatem quisquam, similique sequi odit nihil quasi',
-            img: 'https://source.unsplash.com/featured/800x600',
-        },
-    ];
+    const [posts, setPosts] = useState([]);
+
+    const cat = useLocation().search;
+
+    console.log(cat);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await axios.get(`/posts${cat}`);
+                setPosts(res.data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        fetchData();
+    }, [cat]);
+    // const posts = [
+    //     {
+    //         id: 1,
+    //         title: 'Lorem ipsum dolor sit amet',
+    //         desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores ut, quisquam deserunt reprehenderit minima eaque dolorem ea, delectus cupiditate, ',
+    //         img: 'https://source.unsplash.com/featured/300x203',
+    //     },
+    //     {
+    //         id: 2,
+    //         title: 'Lorem ipsum dolor sit amet',
+    //         desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quidem magni sit aspernatur voluptatem quisquam, similique sequi odit nihil quasi',
+    //         img: 'https://source.unsplash.com/featured/600x400',
+    //     },
+    //     {
+    //         id: 3,
+    //         title: 'Lorem ipsum dolor sit amet',
+    //         desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo quidem magni sit aspernatur voluptatem quisquam, similique sequi odit nihil quasi',
+    //         img: 'https://source.unsplash.com/featured/800x600',
+    //     },
+    // ];
 
     return (
         <div className="home">
