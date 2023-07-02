@@ -1,43 +1,67 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Edit from '../img/edit.png';
 import Delete from '../img/delete.png';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Menu from '../components/Menu';
+import axios from 'axios';
+import moment from 'moment';
+import { AuthContext } from '../context/authContext';
 
 const Single = () => {
+    const [post, setPost] = useState({});
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const postId = location.pathname.split('/')[2];
+
+    const { currentUser } = useContext(AuthContext);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await axios.get(`/posts/${postId}`);
+                setPost(res.data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        fetchData();
+    }, [postId]);
+
+    const handleDelete = async () => {
+        try {
+            await axios.delete(`/posts/${postId}`);
+            navigate('/');
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <div className="single">
             <div className="content">
-                <img src="https://source.unsplash.com/featured/800x600" alt="" />
+                <img src={post?.img} alt=""></img>
 
                 <div className="user">
-                    <img src="https://source.unsplash.com/featured/1920x1080" alt="" />
+                    {post.userImg && <img src={post.userImg} alt="" />}
                     <div className="info">
-                        <span>Nick</span>
-                        <p>該文章發布於2天前</p>
+                        <span>{post.username}</span>
+                        <p>該文章發布於 {moment(post.date).fromNow()}</p>
                     </div>
-                    <div className="edit">
-                        <Link to={`/write?edit=2`}>
-                            <img src={Edit} alt="" />
-                        </Link>
-                        <img src={Delete} alt="" />
-                    </div>
+                    {currentUser.username === post.username && (
+                        <div className="edit">
+                            <Link to={`/write?edit=2`}>
+                                <img src={Edit} alt="" />
+                            </Link>
+                            <img onClick={handleDelete} src={Delete} alt="" />
+                        </div>
+                    )}
                 </div>
-                <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, doloribus?</h1>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur incidunt exercitationem distinctio vero accusamus veritatis
-                    magni dicta voluptate quisquam error aperiam perferendis, modi ullam atque. Nemo saepe consequuntur deleniti modi facere?
-                    Assumenda, voluptatibus? Rem culpa quis aut voluptatem. Numquam itaque esse porro cumque. Voluptatem accusamus quibusdam vitae
-                    odio consequuntur reiciendis ad veniam nulla ex quos neque tempore asperiores temporibus, dignissimos officia nihil voluptatum
-                    enim? Nihil beatae sunt porro impedit provident sed neque blanditiis laudantium, delectus sequi, corporis doloremque, eligendi
-                    velit! Dolore in iure atque totam eum unde perferendis hic, est enim exercitationem aperiam deserunt animi beatae numquam?
-                    Asperiores adipisci illo, ea tempora corrupti ut tenetur esse accusamus ipsum, consequuntur nisi provident quia explicabo!
-                    Repellat beatae veritatis ratione, officiis dolore sunt voluptas expedita dolor at aperiam quae unde facere excepturi illo
-                    reprehenderit non? Ratione unde cum ad maxime, sunt esse beatae, reprehenderit deleniti accusantium dicta error nobis fugit!
-                    Repellendus nam natus autem molestias soluta. Error
-                </p>
+                <h1>{post.title}</h1>
+                {post.desc}
             </div>
-            <Menu />
+            <Menu cat={post.cat} />
         </div>
     );
 };

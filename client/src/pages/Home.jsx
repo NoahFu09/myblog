@@ -7,8 +7,6 @@ const Home = () => {
 
     const cat = useLocation().search;
 
-    console.log(cat);
-
     useEffect(() => {
         const fetchData = async () => {
             try {
