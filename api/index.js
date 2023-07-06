@@ -9,9 +9,9 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: './uploads/' });
 
-app.post('/upload', upload.single('file'), function (req, res) {
+app.post('/api/upload', upload.single('file'), function (req, res) {
     res.status(200).json('Image has been uploaded.');
 });
 

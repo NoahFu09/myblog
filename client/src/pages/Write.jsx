@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import axios from 'axios';
 
 const Write = () => {
     const [value, setValue] = useState('');
@@ -8,8 +9,20 @@ const Write = () => {
     const [file, setFile] = useState(null);
     const [cat, setCat] = useState('');
 
+    const upload = async () => {
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
+            const res = await axios.post('/upload', formData);
+            console.log(res.data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     const handleClick = e => {
         e.preventDefault();
+        upload();
     };
 
     return (
@@ -29,7 +42,7 @@ const Write = () => {
                     <span>
                         <b>可見度:</b> 公開
                     </span>
-                    <input style={{ display: 'none' }} type="file" name="" id="file" onChange={e => setFile(e.target.value[0])} />
+                    <input style={{ display: 'none' }} type="file" name="" id="file" onChange={e => setFile(e.target.files[0])} />
                     <label className="file" htmlFor="file">
                         上傳照片
                     </label>
