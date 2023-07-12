@@ -3,6 +3,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import moment from 'moment';
 
 const Write = () => {
     const state = useLocation().state;
@@ -29,7 +30,13 @@ const Write = () => {
         try {
             state
                 ? await axios.put(`/posts/${state.id}`, { title, desc: value, cat, img: file ? imgUrl : '' })
-                : await axios.put(`/posts/${state.id}`, { title, desc: value, cat, img: file ? imgUrl : '' });
+                : await axios.put(`/posts/${state.id}`, {
+                      title,
+                      desc: value,
+                      cat,
+                      img: file ? imgUrl : '',
+                      date: moment(Date.now().formData('YYYY-MM-DD HH:mm:ss')),
+                  });
         } catch (err) {
             console.log(err);
         }

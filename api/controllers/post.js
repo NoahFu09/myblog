@@ -21,8 +21,15 @@ export const getPost = (req, res) => {
     });
 };
 export const addPost = (req, res) => {
-    res.json('from controller');
+    const token = req.cookies.access_token;
+    if (!token) = return res.status(401).json('用戶未經過驗證!')
+
+    jwt.verify(token,'jwtkey',(err,userInfo) =>{
+        if (err) return res.status(403).json('驗證token錯誤!');
+
+    });
 };
+
 export const deletePost = (req, res) => {
     const token = req.cookies.access_token;
     if (!token) return res.status(401).json('用戶未經過驗證!');
