@@ -25,17 +25,22 @@ const Write = () => {
 
     const handleClick = async e => {
         e.preventDefault();
-        upload();
+        const imgUrl = await upload();
 
         try {
             state
-                ? await axios.put(`/posts/${state.id}`, { title, desc: value, cat, img: file ? imgUrl : '' })
-                : await axios.put(`/posts/${state.id}`, {
+                ? await axios.put(`/posts/${state.id}`, {
                       title,
                       desc: value,
                       cat,
                       img: file ? imgUrl : '',
-                      date: moment(Date.now().formData('YYYY-MM-DD HH:mm:ss')),
+                  })
+                : await axios.post(`/posts/`, {
+                      title,
+                      desc: value,
+                      cat,
+                      img: file ? imgUrl : '',
+                      date: moment(Date.now()).format('YYYY-MM-DD HH:mm:ss'),
                   });
         } catch (err) {
             console.log(err);
@@ -65,25 +70,25 @@ const Write = () => {
                     </label>
                     <div className="buttons">
                         <button>暫存</button>
-                        <button onClick={handleClick}>更新</button>
+                        <button onClick={handleClick}>發佈文章</button>
                     </div>
                 </div>
                 <div className="item">
                     <h1>分類</h1>
                     <div className="cat">
-                        <input type="radio" checked={cat === 'cinema'} name="cat" value="cinema" id="cinema" onClick={e => setCat(e.target.value)} />
+                        <input type="radio" checked={cat === 'cinema'} name="cat" value="cinema" id="cinema" onChange={e => setCat(e.target.value)} />
                         <label htmlFor="cinema">觀影心得</label>
                     </div>
                     <div className="cat">
-                        <input type="radio" checked={cat === 'design'} name="cat" value="design" id="design" onClick={e => setCat(e.target.value)} />
+                        <input type="radio" checked={cat === 'design'} name="cat" value="design" id="design" onChange={e => setCat(e.target.value)} />
                         <label htmlFor="design">程式開發</label>
                     </div>
                     <div className="cat">
-                        <input type="radio" checked={cat === 'music'} name="cat" value="music" id="music" onClick={e => setCat(e.target.value)} />
+                        <input type="radio" checked={cat === 'music'} name="cat" value="music" id="music" onChange={e => setCat(e.target.value)} />
                         <label htmlFor="music">音樂分享</label>
                     </div>
                     <div className="cat">
-                        <input type="radio" checked={cat === 'food'} name="cat" value="food" id="food" onClick={e => setCat(e.target.value)} />
+                        <input type="radio" checked={cat === 'food'} name="cat" value="food" id="food" onChange={e => setCat(e.target.value)} />
                         <label htmlFor="food">美食分享</label>
                     </div>
                     <div className="cat">
@@ -93,7 +98,7 @@ const Write = () => {
                             name="cat"
                             value="technology"
                             id="technology"
-                            onClick={e => setCat(e.target.value)}
+                            onChange={e => setCat(e.target.value)}
                         />
                         <label htmlFor="technology">科技探索</label>
                     </div>
