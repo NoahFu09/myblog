@@ -57,18 +57,19 @@ export const deletePost = (req, res) => {
 
 export const updatePost = (req, res) => {
     const token = req.cookies.access_token;
-    if (!token) return res.status(401).json('用戶未經過驗證!');
+    if (!token) return res.status(401).json('Not authenticated!');
 
     jwt.verify(token, 'jwtkey', (err, userInfo) => {
-        if (err) return res.status(403).json('驗證token錯誤!');
+        if (err) return res.status(403).json('Token is not valid!');
 
         const postId = req.params.id;
-        const q = 'UPDATE posts SET title=?, desc=?, img=?, cat=? WHERE id=? AND  uid=? ';
+        const q = 'UPDATE posts SET `title`=?,`desc`=?,`img`=?,`cat`=? WHERE `id` = ? AND `uid` = ?';
+
         const values = [req.body.title, req.body.desc, req.body.img, req.body.cat];
 
         db.query(q, [...values, postId, userInfo.id], (err, data) => {
             if (err) return res.status(500).json(err);
-            return res.status(200).json('Post has been Updated!');
+            return res.json('Post has been updated.');
         });
     });
 };
