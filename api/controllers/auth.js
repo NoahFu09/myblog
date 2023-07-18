@@ -14,9 +14,9 @@ export const register = (req, res) => {
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(req.body.password, salt);
 
-        const q = 'INSERT INTO users(`username`,`email`,`password`) VALUES (?)';
+        const q = 'INSERT INTO users(`username`,`email`,`password`,`level`) VALUES (?)';
 
-        const values = [req.body.username, req.body.email, hash];
+        const values = [req.body.username, req.body.email, hash, '3'];
 
         db.query(q, [values], (err, data) => {
             if (err) return res.json(err);
@@ -39,11 +39,11 @@ export const login = (req, res) => {
 
         if (!isPasswordCorrect) return res.status(400).json('錯誤的帳號或密碼!');
 
-        const token = jwt.sign({ id: data[0].id }, 'jwtkey');
-        const { password, ...other } = data[0];
+        const token = jwt.sign({ id: data[0].id, level: data[0].level }, 'jwtkey');
+        const { password, level, ...other } = data[0];
 
         //只有透過API才可以取到 access_token
-        res.cookie('access_token', token, { httpOnly: true }).status(200).json(other);
+        return res.cookie('access_token', token, { httpOnly: true }).status(200).json(other);
     });
 };
 
