@@ -7,6 +7,8 @@ import Write from './pages/Write';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import './style.scss';
+import Admin from './pages/Admin';
+import NavbarBackend from './components/NavbarBackend';
 
 const Layout = () => {
     return (
@@ -14,6 +16,15 @@ const Layout = () => {
             <Navbar />
             <Outlet />
             <Footer />
+        </>
+    );
+};
+
+const LayoutBackend = () => {
+    return (
+        <>
+            <NavbarBackend />
+            <Outlet />
         </>
     );
 };
@@ -44,6 +55,16 @@ const router = createBrowserRouter([
     {
         path: '/login',
         element: <Login />,
+    },
+    {
+        path: '/',
+        element: <LayoutBackend />,
+        children: [
+            {
+                path: '/admin',
+                element: <Admin />,
+            },
+        ],
     },
 ]);
 

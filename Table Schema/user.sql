@@ -4,4 +4,5 @@ CREATE TABLE `blog`.`users` (
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
   `img` VARCHAR(255) NULL,
+  `level` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`));
