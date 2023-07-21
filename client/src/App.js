@@ -7,7 +7,7 @@ import Write from './pages/Write';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import './style.scss';
-import Admin from './pages/Admin';
+import User from './pages/Backend/User';
 import NavbarBackend from './components/NavbarBackend';
 
 const Layout = () => {
@@ -61,8 +61,8 @@ const router = createBrowserRouter([
         element: <LayoutBackend />,
         children: [
             {
-                path: '/admin',
-                element: <Admin />,
+                path: '/User',
+                element: <User />,
             },
         ],
     },

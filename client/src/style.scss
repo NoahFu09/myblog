@@ -109,6 +109,20 @@ $lightBrown: #f1e6dd;
             }
         }
 
+        //NAVBARBACKEND
+        .navbarbackend {
+            margin-top: 50px;
+            .links {
+                display: flex;
+                gap: 10px;
+                font-size: 24px;
+                .link {
+                    border: 1px solid #333;
+                    padding: 5px;
+                }
+            }
+        }
+
         //FOOTER
 
         footer {
@@ -381,6 +395,32 @@ $lightBrown: #f1e6dd;
                         color: teal;
                     }
                 }
+            }
+        }
+
+        //User
+
+        .user {
+            margin-top: 30px;
+            table {
+                border: 1px solid #333;
+                tr,
+                td {
+                    padding: 5px;
+                }
+
+                .star {
+                    color: red;
+                }
+            }
+
+            .errmsg {
+                margin-top: 10px;
+            }
+
+            .submit {
+                margin-top: 10px;
+                font-size: 16px;
             }
         }
     }

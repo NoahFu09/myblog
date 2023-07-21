@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 
 const NavbarBackend = () => {
     return (
-        <div className="Navbar_Backend">
+        <div className="navbarbackend">
             <div className="container">
                 <div className="links">
-                    <Link>
+                    <Link to="/user" className="link">
                         <h6>用戶設定</h6>
                     </Link>
-                    <Link>
+                    <Link to="/post" className="link">
                         <h6>文章管理</h6>
                     </Link>
                 </div>
