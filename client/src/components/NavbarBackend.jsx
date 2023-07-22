@@ -12,6 +12,9 @@ const NavbarBackend = () => {
                     <Link to="/post" className="link">
                         <h6>文章管理</h6>
                     </Link>
+                    <Link to="/" className="link">
+                        <h6>回首頁</h6>
+                    </Link>
                 </div>
             </div>
         </div>
