@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import './style.scss';
 import User from './pages/Backend/User';
 import NavbarBackend from './components/NavbarBackend';
+import Post from './pages/Backend/Post';
 
 const Layout = () => {
     return (
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
             {
                 path: '/User',
                 element: <User />,
+            },
+            {
+                path: '/Post',
+                element: <Post />,
             },
         ],
     },

@@ -15,6 +15,9 @@ const NavbarBackend = () => {
                     <Link to="/" className="link">
                         <h6>回首頁</h6>
                     </Link>
+                    <Link to="/write" className="link">
+                        <h6>新文章</h6>
+                    </Link>
                 </div>
             </div>
         </div>
