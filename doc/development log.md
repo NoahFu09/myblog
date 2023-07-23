@@ -48,8 +48,9 @@
 ## 2023/7/23
 
 需求說明：
-一、調整主頁不要顯示 登入、編輯文章功能。
+一、(凌晨)調整主頁不要顯示 登入、編輯文章功能。
 二、完成修改密碼功能，只有登入的人才可以新刪改文章，因此登入密碼就很重要，同時要防止駭客直接用api改資料庫密碼，這部分api有驗證 token，如果 token 不對就沒辦法改。
+三、(晚上)新增文章管理畫面，動態帶出文章資料，增加文章狀態。
 
 開發遇到問題：
 一、後端api user.js 函式庫名一直寫錯，例如：bscript 寫成 bscript、status 寫成 state。
@@ -119,3 +120,5 @@
 [什麼是 IntelliSense ](https://ithelp.ithome.com.tw/articles/10219794)
 
 [為甚麼要用 ` 重音符](https://stackoverflow.com/questions/33679732/difference-if-there-is-any-between-and-in-javascript)
+
+[什麼是 useEffect ?](https://www.youtube.com/watch?v=258hmDa-65o&list=LL&index=1)
