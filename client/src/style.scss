@@ -402,10 +402,7 @@ $lightBrown: #f1e6dd;
 
         .user {
             margin-top: 30px;
-            table,
-            tr,
-            th,
-            td {
+            table {
                 border: 1px solid #333;
                 border-collapse: collapse;
                 tr,
@@ -431,7 +428,7 @@ $lightBrown: #f1e6dd;
 
         //Post
 
-        .post {
+        .postbackend {
             margin-top: 30px;
 
             table,

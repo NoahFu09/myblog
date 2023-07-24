@@ -2,7 +2,7 @@ import React from 'react';
 
 const Post = () => {
     return (
-        <div className="post">
+        <div className="postbackend">
             <table>
                 <thead>
                     <tr>
