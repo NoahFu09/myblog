@@ -1,6 +1,24 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 
 const Post = () => {
+    const [posts, setPosts] = useState([]);
+
+    const cat = useLocation().search;
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await axios.get(`/posts${cat}`);
+                setPosts(res.data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        fetchData();
+    }, [cat]);
+
     return (
         <div className="postbackend">
             <table>
@@ -16,21 +34,27 @@ const Post = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>test1</td>
-                        <td>
-                            <img src="https://unsplash.it/200/100" alt="" />
-                        </td>
-                        <td>2023-07-15 12:19:39</td>
-                        <td>公開</td>
-                        <td>電影欣賞</td>
-                        <td>
-                            <a href="/">修改</a>
-                            <a href="/">刪除</a>
-                        </td>
-                    </tr>
-                    <tr>
+                    {posts.map(post => (
+                        <tr>
+                            <td>{post.id}</td>
+                            <td>{post.title}</td>
+                            <td>
+                                <img src={`../upload/${post.img}`} alt="" />
+                            </td>
+                            <td>{post.date}</td>
+                            <td>{post.state}</td>
+                            <td>{post.cat}</td>
+                            <td>
+                                <Link to={`/write`} state={post}>
+                                    修改
+                                </Link>
+
+                                <a href="/">刪除</a>
+                            </td>
+                        </tr>
+                    ))}
+
+                    {/* <tr>
                         <td>2</td>
                         <td>test2</td>
                         <td>
@@ -57,7 +81,7 @@ const Post = () => {
                             <a href="/">修改</a>
                             <a href="/">刪除</a>
                         </td>
-                    </tr>
+                    </tr> */}
                 </tbody>
             </table>
         </div>

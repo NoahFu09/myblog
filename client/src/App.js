@@ -3,7 +3,8 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Single from './pages/Single';
-import Write from './pages/Write';
+//import Write from './pages/Write';
+import Write from './pages/Backend/Write';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import './style.scss';
@@ -43,10 +44,10 @@ const router = createBrowserRouter([
                 path: '/post/:id',
                 element: <Single />,
             },
-            {
-                path: '/write',
-                element: <Write />,
-            },
+            // {
+            //     path: '/write',
+            //     element: <Write />,
+            // },
         ],
     },
     {
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
             {
                 path: '/Post',
                 element: <Post />,
+            },
+            {
+                path: '/Write',
+                element: <Write />,
             },
         ],
     },
