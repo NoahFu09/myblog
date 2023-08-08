@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import moment from 'moment';
 
 const Post = () => {
     const [posts, setPosts] = useState([]);
@@ -41,7 +42,7 @@ const Post = () => {
                             <td>
                                 <img src={`../upload/${post.img}`} alt="" />
                             </td>
-                            <td>{post.date}</td>
+                            <td>{moment(post.date).format('YYYY-MM-DD HH:mm')}</td>
                             <td>{post.state}</td>
                             <td>{post.cat}</td>
                             <td>

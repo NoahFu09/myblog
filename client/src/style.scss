@@ -451,9 +451,25 @@ $lightBrown: #f1e6dd;
 
         .writebackend {
             margin-top: 30px;
+
+            .content {
+                margin-top: 15px;
+            }
+
+            .box1,
+            .box2,
+            .editorContainer {
+                margin-top: 10px;
+            }
+
             input {
-                padding: 10px;
+                padding: 5px;
                 border: 1px solid lightgray;
+            }
+
+            .cat {
+                display: inline-block;
+                margin-right: 3px;
             }
         }
     }
