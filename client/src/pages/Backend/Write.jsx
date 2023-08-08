@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import ReactQuill from 'react-quill';
+import Editor from '../../components/Editor';
 import 'react-quill/dist/quill.snow.css';
 
 const Write = () => {
@@ -9,8 +9,7 @@ const Write = () => {
     return (
         <div className="writebackend">
             <input type="text" value={title} onChange={setTitle} placeholder="請輸入文章標題" />
-
-            <ReactQuill theme="snow" value={value} onChange={setValue} />
+            <Editor value={value} onChange={setValue} />
         </div>
     );
 };
