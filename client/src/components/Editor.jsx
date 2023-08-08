@@ -40,7 +40,7 @@ class Editor extends Component {
                     const formData = new FormData();
                     formData.append('image', file);
 
-                    fetch('https://api.imgbb.com/1/upload?key=334ecea9ec1213784db5cb9a14dac265', {
+                    fetch('https://api.imgbb.com/1/upload?key=f8e736d9c2673878c32208c372d28643', {
                         method: 'POST',
                         body: formData,
                     })
