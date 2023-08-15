@@ -5,6 +5,7 @@ import 'react-quill/dist/quill.snow.css';
 const Write = () => {
     const [title, setTitle] = useState('');
     const [value, setValue] = useState('');
+    const [tag, setTag] = useState('');
 
     return (
         <div className="writebackend">
@@ -15,7 +16,6 @@ const Write = () => {
                     <span>文章標題：</span>
                     <input type="text" value={title} size="30" onChange={e => setTitle(e.target.value)} />
                 </div>
-
                 <div className="box2">
                     <span>文章分類：</span>
                     <div className="cat">
@@ -38,6 +38,17 @@ const Write = () => {
                         <input type="radio" name="cat" id="cinema" value="cinema" />
                         <label htmlFor="cinema">觀影心得</label>
                     </div>
+                </div>
+                <div className="box3">
+                    <span>文章標記：</span>
+                    <input type="text" value={tag} size="30" onChange={e => setTag(e.target.value)} />
+                </div>
+                <div className="tagmark">
+                    <div className="tag">#ASP.NET</div>
+                    <div className="tag">#VB.NET</div>
+                    <div className="tag">#報表</div>
+                    <div className="tag">#SQL</div>
+                    <div className="tag">#C#</div>
                 </div>
 
                 <div className="editorContainer">
