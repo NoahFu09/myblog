@@ -119,3 +119,9 @@ yarn add moment
 ```bash
 yarn add multer
 ```
+
+## 安裝 輸入框 tag 套件
+
+~~~bash
+yarn add react-tag-input-component
+~~~

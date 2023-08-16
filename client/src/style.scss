@@ -452,15 +452,17 @@ $lightBrown: #f1e6dd;
         .writebackend {
             margin-top: 30px;
 
-            .content {
-                margin-top: 15px;
+            .title {
+                display: flex;
+                margin-top: 10px;
             }
 
-            .box1,
-            .box2,
-            .box3,
-            .editorContainer {
+            .categories {
+                display: flex;
                 margin-top: 10px;
+                .cat {
+                    margin-right: 5px;
+                }
             }
 
             input {
@@ -468,21 +470,17 @@ $lightBrown: #f1e6dd;
                 border: 1px solid lightgray;
             }
 
-            .cat {
-                display: inline-block;
-                margin-right: 3px;
-            }
-
-            .tagmark {
-                display: flex;
-                flex-direction: row;
-                gap: 3px;
+            .rti--container {
+                max-width: 400px;
                 margin-top: 10px;
             }
-            .tag {
-                font-size: 10px;
-                border: 1px solid #333;
-                border-radius: 10%;
+
+            .rti--input {
+                max-width: 140px;
+            }
+
+            .editorContainer {
+                margin-top: 10px;
             }
         }
     }
