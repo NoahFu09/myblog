@@ -473,6 +473,12 @@ $lightBrown: #f1e6dd;
             .rti--container {
                 max-width: 400px;
                 margin-top: 10px;
+                border: none;
+                // --rti-main: rgba(255, 99, 71, 0);
+            }
+
+            .rti-main {
+                border: none;
             }
 
             .rti--input {
@@ -481,6 +487,27 @@ $lightBrown: #f1e6dd;
 
             .editorContainer {
                 margin-top: 10px;
+                .ql-container.ql-snow {
+                    height: auto;
+                }
+                .ql-editor {
+                    height: 400px;
+                    overflow-y: scroll;
+                }
+            }
+
+            #btn_OKY {
+                margin-top: 10px;
+                width: 80px;
+                height: 40px;
+                cursor: pointer;
+                padding: 5px;
+                border: 1px solid lightgray;
+
+                &:hover {
+                    background-color: lightgray;
+                    border: 1px solid #bbb;
+                }
             }
         }
     }

@@ -2,12 +2,26 @@ import { useState } from 'react';
 import Editor from '../../components/Editor';
 import 'react-quill/dist/quill.snow.css';
 import { TagsInput } from 'react-tag-input-component';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 const Write = () => {
+    const state = useLocation().state;
     const [title, setTitle] = useState('');
     const [value, setValue] = useState('');
-    // const [tag, setTag] = useState('');
     const [selected, setSelected] = useState([]);
+
+    const handleClick = async e => {
+        e.preventDefault();
+
+        try {
+            state
+                ? axios.put(`/post/${state.id}`, {
+                      title,
+                  })
+                : axios.post(`/post/`, {});
+        } catch (err) {}
+    };
 
     return (
         <div className="writebackend">
@@ -47,6 +61,8 @@ const Write = () => {
             <div className="editorContainer">
                 <Editor value={value} onChange={setValue} />
             </div>
+
+            <input type="button" id="btn_OKY" value="存檔" onClick={handleClick} />
         </div>
     );
 };
