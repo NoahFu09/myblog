@@ -28,8 +28,7 @@ const Write = () => {
             <h2>編輯文章</h2>
             <hr />
             <div className="title">
-                <p>文章標題：</p>
-                <input type="text" value={title} size="30" onChange={e => setTitle(e.target.value)} />
+                <input type="text" id="title" placeholder="請輸入標題" value={title} size="30" onChange={e => setTitle(e.target.value)} />
             </div>
             <div className="categories">
                 <p>文章分類：</p>
@@ -52,6 +51,17 @@ const Write = () => {
                 <div className="cat">
                     <input type="radio" name="cat" id="cinema" value="cinema" />
                     <label htmlFor="cinema">觀影心得</label>
+                </div>
+            </div>
+            <div className="states">
+                <p>文章狀態：</p>
+                <div className="state">
+                    <input type="radio" name="state" id="show" value="Y" />
+                    <label htmlFor="show">公開</label>
+                </div>
+                <div className="state">
+                    <input type="radio" name="state" id="hide" value="N" />
+                    <label htmlFor="hide">不公開</label>
                 </div>
             </div>
 

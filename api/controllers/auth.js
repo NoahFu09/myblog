@@ -1,12 +1,13 @@
 import { db } from '../db.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { now } from './common.js';
 
 export const register = (req, res) => {
     //檢查 USER 是否存在
-    const q = 'SELECT * FROM users WHERE email=? OR username=?';
+    const q = 'SELECT * FROM py_001 WHERE py_001_mail=? OR py_001_usid=?';
 
-    db.query(q, [req.body.email, req.body.username], (err, data) => {
+    db.query(q, [req.body.email, req.body.userid], (err, data) => {
         if (err) return res.json(err);
         if (data.length) return res.status(409).json('此用戶已存在，請嘗試其它名稱!');
 
@@ -14,9 +15,8 @@ export const register = (req, res) => {
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(req.body.password, salt);
 
-        const q = 'INSERT INTO users(`username`,`email`,`password`,`level`) VALUES (?)';
-
-        const values = [req.body.username, req.body.email, hash, '3'];
+        const q = 'INSERT INTO py_001 VALUES (?)';
+        const values = [req.body.userid, req.body.userid, hash, req.body.email, '', '', '', '', '', '', now(), 'admin', now(), 'admin'];
 
         db.query(q, [values], (err, data) => {
             if (err) return res.json(err);

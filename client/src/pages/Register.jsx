@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const Register = () => {
     const [inputs, setInputs] = useState({
-        username: '',
+        userid: '',
         email: '',
         password: '',
     });
@@ -35,9 +35,9 @@ const Register = () => {
         <div className="auth">
             <h1>會員註冊</h1>
             <form>
-                <input required type="text" placeholder="username" name="username" onChange={handleChange} />
-                <input required type="email" placeholder="email" name="email" onChange={handleChange} />
-                <input required type="password" placeholder="password" name="password" onChange={handleChange} />
+                <input required type="text" placeholder="請輸入帳號" name="userid" onChange={handleChange} />
+                <input required type="email" placeholder="請輸入電子信箱" name="email" onChange={handleChange} />
+                <input required type="password" placeholder="請輸入密碼" name="password" onChange={handleChange} />
                 <button onClick={handleSubmit}>註冊</button>
                 {err && <p>{err}</p>}
                 <span>

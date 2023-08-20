@@ -5,8 +5,7 @@ $lightBrown: #f1e6dd;
     display: flex;
     justify-content: center;
     .container {
-        width: 1024px;
-
+        width: 80%;
         .link {
             text-decoration: none;
             color: inherit;
@@ -457,6 +456,17 @@ $lightBrown: #f1e6dd;
                 margin-top: 10px;
             }
 
+            #title {
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 16px;
+                outline-color: #3182ce;
+                // #title:focus {
+                //     border: 1px solid #3182ce;
+                // }
+            }
+
             .categories {
                 display: flex;
                 margin-top: 10px;
@@ -465,20 +475,17 @@ $lightBrown: #f1e6dd;
                 }
             }
 
-            input {
-                padding: 5px;
-                border: 1px solid lightgray;
+            .states {
+                margin-top: 10px;
+                display: flex;
+                .state {
+                    margin-right: 5px;
+                }
             }
 
             .rti--container {
                 max-width: 400px;
                 margin-top: 10px;
-                border: none;
-                // --rti-main: rgba(255, 99, 71, 0);
-            }
-
-            .rti-main {
-                border: none;
             }
 
             .rti--input {
