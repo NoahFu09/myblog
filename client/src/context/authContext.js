@@ -9,6 +9,7 @@ export const AuthContexProvider = ({ children }) => {
 
     const login = async inputs => {
         const res = await axios.post('/auth/login', inputs);
+        //return res.cookie('access_token', token, { httpOnly: true }).status(200).json(other);
         setCurrentUser(res.data);
     };
 

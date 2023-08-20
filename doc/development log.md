@@ -71,8 +71,12 @@
 一、mysql 工具建立Table Table Name 只能用小寫。
 二、開發時開vpn玩遊戲，導致代理伺服器有問題叫呼叫API失敗，把vpn程式關閉，網路介面卡停用就好了。
 三、使用套件 ReactQuill 一直跑版，參考網路 codebox 結果別人是把套件樣式 設定在 index.js。
-四、套件 ReactQuill 要有捲軸 必須設定 CSS .ql-editor:overflow-y: scroll
-五、想了很久，文章內嵌照片問題，參考網路 codebox 有人使用 imgbb 存照片，覺得還不錯暫時先參考此作法，如果之後要換 圖庫server 再想辦法吧。
+四、套件 `ReactQuill` 要有捲軸 必須設定 CSS .ql-editor:overflow-y: scroll
+五、想了很久，文章內嵌照片問題，參考網路 `codebox` 有人使用 `imgbb` 存照片，覺得還不錯暫時先參考此作法，如果之後要換 圖庫server 再想辦法吧。
+六、安裝 sql developer(oracle) 想要用 JDBC 連 mysql，jar 版本不對錯誤，要自己重新下載 https://dev.mysql.com/downloads/connector/j/ ，要自己先查 mysql 版本 `version()`，然後選 `platform independent` 下載 zip檔解壓縮。
+七、mysql 欄位屬性 utf8mb4 才是真正的utf-8 由四碼編成。
+八、`nodejs` common.js javascript 方法要回傳字串 加 return 就好。
+九、修改 api auth.js 一直報錯，而且報錯就要重啟 Server ，要注意資料庫回傳的欄位名稱如:`data[0].py_001_pass` ，盡量使用 return res.status(200).json('ok'); 逐行排錯。
 
 ## 開發時遇到的錯誤
 
@@ -136,3 +140,5 @@
 [為甚麼要用 ` 重音符](https://stackoverflow.com/questions/33679732/difference-if-there-is-any-between-and-in-javascript)
 
 [什麼是 useEffect ?](https://www.youtube.com/watch?v=258hmDa-65o&list=LL&index=1)
+
+[utf8mb3，utf8mb4 和utf8的含义和由来](https://blog.csdn.net/htuhxf/article/details/90676341)

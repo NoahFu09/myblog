@@ -27,20 +27,18 @@ export const register = (req, res) => {
 
 export const login = (req, res) => {
     // CHECK USER
+    const q = 'SELECT * FROM py_001 WHERE py_001_usid=?';
 
-    const q = 'SELECT * FROM users WHERE username=?';
-
-    db.query(q, [req.body.username], (err, data) => {
+    db.query(q, [req.body.userid], (err, data) => {
         if (err) return res.json(err);
         if (data.length === 0) return res.status(404).json('找不到此用戶!');
 
         // CHECK password
-        const isPasswordCorrect = bcrypt.compareSync(req.body.password, data[0].password); // true
-
+        const isPasswordCorrect = bcrypt.compareSync(req.body.password, data[0].py_001_pass); // true
         if (!isPasswordCorrect) return res.status(400).json('錯誤的帳號或密碼!');
 
-        const token = jwt.sign({ id: data[0].id, level: data[0].level }, 'jwtkey');
-        const { password, level, ...other } = data[0];
+        const token = jwt.sign({ id: data[0].userid }, 'jwtkey');
+        const { py_001_pass, ...other } = data[0];
 
         //只有透過API才可以取到 access_token
         return res.cookie('access_token', token, { httpOnly: true }).status(200).json(other);
