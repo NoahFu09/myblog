@@ -60,6 +60,20 @@
 五、清空 input 要記得把每個 property 都再賦值一次。 
 六、token 就是綜合自己設定的 雜湊值(可能是10)、原參數(可能是帳號)、雜湊密碼(最簡單就是jwtkey) 全部加在一起運算得到的結果。因此除非駭客知道你所有的設定，要不然基本上是不可能破解。
 
+## 2023/8/8 ~ 2023/8/20
+
+需求說明：
+一、重新設計Table po_001(文章分類), po_002(文章分類), po_003(文章主檔), py_001(人員主檔)。
+二、修改文章編輯畫面，增加 公開或不公開 按鈕。
+三、將註冊帳號的Table 由 user 換成 py_001。
+
+開發遇到問題：
+一、mysql 工具建立Table Table Name 只能用小寫。
+二、開發時開vpn玩遊戲，導致代理伺服器有問題叫呼叫API失敗，把vpn程式關閉，網路介面卡停用就好了。
+三、使用套件 ReactQuill 一直跑版，參考網路 codebox 結果別人是把套件樣式 設定在 index.js。
+四、套件 ReactQuill 要有捲軸 必須設定 CSS .ql-editor:overflow-y: scroll
+五、想了很久，文章內嵌照片問題，參考網路 codebox 有人使用 imgbb 存照片，覺得還不錯暫時先參考此作法，如果之後要換 圖庫server 再想辦法吧。
+
 ## 開發時遇到的錯誤
 
 [解决 Node.js mysql 客户端不支持认证协议引发的“ER_NOT_SUPPORTED_AUTH_MODE”问题](https://waylau.com/node.js-mysql-client-does-not-support-authentication-protocol/)
