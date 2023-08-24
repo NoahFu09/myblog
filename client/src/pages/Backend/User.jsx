@@ -40,77 +40,44 @@ const User = () => {
     };
 
     return (
-        <div className="userbackend">
-            <h2>用戶設定</h2>
-            <hr />
+        <div className="st-container" id="st-container">
+            <div class="st-content">
+                <div className="st-content-inner">
+                    <div class="main clearfix">
+                        <div id="st-trigger-effects" class="column">
+                            <div className="userbackend">
+                                <h2>用戶設定</h2>
+                                <hr />
+                                <input
+                                    type="text"
+                                    placeholder="帳號"
+                                    disabled="disabled"
+                                    name="userid"
+                                    defaultValue={currentUser?.py_001_usid}
+                                    onChange={handleChange}
+                                />
 
-            <input type="text" placeholder="帳號" disabled="disabled" name="userid" defaultValue={currentUser?.py_001_usid} onChange={handleChange} />
+                                <input type="text" placeholder="電子信箱" disabled="disabled" name="email" defaultValue={currentUser?.py_001_mail} />
 
-            <input type="text" placeholder="電子信箱" disabled="disabled" name="email" defaultValue={currentUser?.py_001_mail} />
+                                <input type="password" placeholder="舊密碼" name="oldpassword" value={inputs.oldpassword} onChange={handleChange} />
 
-            {/* <input
-                type="text"
-                placeholder={'暱稱 (現在的暱稱:' + currentUser?.py_001_unme + ')'}
-                name="username"
-                value={inputs.username}
-                onChange={handleChange}
-            /> */}
+                                <input type="password" placeholder="新密碼" name="password" value={inputs.password} onChange={handleChange} />
 
-            <input type="password" placeholder="舊密碼" name="oldpassword" value={inputs.oldpassword} onChange={handleChange} />
+                                <input
+                                    type="password"
+                                    placeholder="再次輸入新密碼"
+                                    name="checkpassword"
+                                    value={inputs.checkpassword}
+                                    onChange={handleChange}
+                                />
 
-            <input type="password" placeholder="新密碼" name="password" value={inputs.password} onChange={handleChange} />
-
-            <input type="password" placeholder="再次輸入新密碼" name="checkpassword" value={inputs.checkpassword} onChange={handleChange} />
-
-            {res && <p className="respone">{res}</p>}
-            <input type="button" id="btn_OKY" className="submit" value="存檔" onClick={handleSubmit} />
-            {/* <table>
-                <thead>
-                    <tr>
-                        <th colSpan="2">用戶設定</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>帳號</td>
-                        <td>
-                            <input type="text" disabled="disabled" name="username" defaultValue={currentUser?.username} onChange={handleChange} />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>電子信箱</td>
-                        <td>
-                            <input type="text" disabled="disabled" name="email" defaultValue={currentUser?.email} />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span className="star">*</span>舊密碼
-                        </td>
-                        <td>
-                            <input type="password" name="oldpassword" value={inputs.oldpassword} onChange={handleChange} />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span className="star">*</span>新密碼
-                        </td>
-                        <td>
-                            <input type="password" name="password" value={inputs.password} onChange={handleChange} />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span className="star">*</span>再次確認密碼
-                        </td>
-                        <td>
-                            <input type="password" name="checkpassword" value={inputs.checkpassword} onChange={handleChange} />
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            {res && <p className="respone">{res}</p>}
-            <input type="button" className="submit" value="存檔" onClick={handleSubmit} /> */}
+                                {res && <p className="respone">{res}</p>}
+                                <input type="button" id="btn_OKY" className="submit" value="存檔" onClick={handleSubmit} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
