@@ -40,44 +40,21 @@ const User = () => {
     };
 
     return (
-        <div className="st-container" id="st-container">
-            <div class="st-content">
-                <div className="st-content-inner">
-                    <div class="main clearfix">
-                        <div id="st-trigger-effects" class="column">
-                            <div className="userbackend">
-                                <h2>用戶設定</h2>
-                                <hr />
-                                <input
-                                    type="text"
-                                    placeholder="帳號"
-                                    disabled="disabled"
-                                    name="userid"
-                                    defaultValue={currentUser?.py_001_usid}
-                                    onChange={handleChange}
-                                />
+        <div className="userbackend">
+            <h2>用戶設定</h2>
+            <hr />
+            <input type="text" placeholder="帳號" disabled="disabled" name="userid" defaultValue={currentUser?.py_001_usid} onChange={handleChange} />
 
-                                <input type="text" placeholder="電子信箱" disabled="disabled" name="email" defaultValue={currentUser?.py_001_mail} />
+            <input type="text" placeholder="電子信箱" disabled="disabled" name="email" defaultValue={currentUser?.py_001_mail} />
 
-                                <input type="password" placeholder="舊密碼" name="oldpassword" value={inputs.oldpassword} onChange={handleChange} />
+            <input type="password" placeholder="舊密碼" name="oldpassword" value={inputs.oldpassword} onChange={handleChange} />
 
-                                <input type="password" placeholder="新密碼" name="password" value={inputs.password} onChange={handleChange} />
+            <input type="password" placeholder="新密碼" name="password" value={inputs.password} onChange={handleChange} />
 
-                                <input
-                                    type="password"
-                                    placeholder="再次輸入新密碼"
-                                    name="checkpassword"
-                                    value={inputs.checkpassword}
-                                    onChange={handleChange}
-                                />
+            <input type="password" placeholder="再次輸入新密碼" name="checkpassword" value={inputs.checkpassword} onChange={handleChange} />
 
-                                {res && <p className="respone">{res}</p>}
-                                <input type="button" id="btn_OKY" className="submit" value="存檔" onClick={handleSubmit} />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {res && <p className="respone">{res}</p>}
+            <input type="button" id="btn_OKY" className="submit" value="存檔" onClick={handleSubmit} />
         </div>
     );
 };

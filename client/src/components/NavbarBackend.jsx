@@ -1,12 +1,25 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 
 const NavbarBackend = () => {
+    const title = useRef(null);
+    const menu = useRef(null);
+    const click = () => {
+        // title.current.classList.toggle('st-color');
+        menu.current.classList.toggle('st-move');
+    };
+
     return (
         <div id="navbarBackend" className="navbarBackend">
-            <nav className="st-menu " id="menu-1">
-                <h2 className="title">My Blog</h2>
-                <button class="toggle">Menu</button>
+            <nav className="st-menu " id="menu-1" ref={menu}>
+                <div className="icon">
+                    <h2 className="title" ref={title}>
+                        My Blog
+                    </h2>
+                    <button className="st-button" onClick={click}>
+                        Menu
+                    </button>
+                </div>
                 <Link to="/user">用戶設定</Link>
 
                 <Link to="/post">文章管理</Link>

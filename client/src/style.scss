@@ -109,9 +109,21 @@ $lightBrown: #f1e6dd;
         }
 
         //NAVBARBACKEND
+
         .navbarBackend {
+            .st-color {
+                background-color: rgb(0, 0, 255);
+            }
+            .st-move {
+                transform: translate(-300px, 0);
+                .st-button {
+                    position: relative;
+                    left: 55px;
+                }
+            }
+
             .st-menu {
-                transform: translate(100px, 50px);
+                // transform: translate(100px, 50px);
                 box-sizing: border-box;
                 left: 0;
                 width: 300px;
@@ -120,12 +132,24 @@ $lightBrown: #f1e6dd;
                 background-color: #eee;
                 z-index: 100;
                 // visibility: hidden;
-
-                .title {
-                    color: #555;
-                    margin: 0 auto;
-                    padding: 20px 40px;
+                .icon {
+                    display: flex;
+                    .title {
+                        flex: 7;
+                        color: #555;
+                        text-align: center;
+                        padding: 20px 0px;
+                    }
+                    .st-button {
+                        flex: 1;
+                        height: 35px;
+                        align-self: center;
+                        cursor: pointer;
+                        position: relative;
+                        right: 5px;
+                    }
                 }
+
                 a {
                     display: block;
                     text-decoration: none;
@@ -420,7 +444,7 @@ $lightBrown: #f1e6dd;
             display: flex;
             flex-direction: column;
             gap: 10px;
-            margin-top: 30px;
+            margin-top: 75px;
 
             input {
                 padding: 8px;
