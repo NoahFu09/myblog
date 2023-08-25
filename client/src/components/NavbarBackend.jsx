@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
+import { FaBars } from 'react-icons/fa';
 
 const NavbarBackend = () => {
     const title = useRef(null);
@@ -11,14 +12,13 @@ const NavbarBackend = () => {
 
     return (
         <div id="navbarBackend" className="navbarBackend">
-            <nav className="st-menu " id="menu-1" ref={menu}>
+            <nav className="st-menu st-move" id="menu-1" ref={menu}>
                 <div className="icon">
                     <h2 className="title" ref={title}>
                         My Blog
                     </h2>
-                    <button className="st-button" onClick={click}>
-                        Menu
-                    </button>
+
+                    <FaBars className="st-button" onClick={click} size="1.5em" />
                 </div>
                 <Link to="/user">用戶設定</Link>
 
