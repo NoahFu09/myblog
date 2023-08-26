@@ -1,5 +1,6 @@
 import { db } from '../db.js';
 import jwt from 'jsonwebtoken';
+import { now } from './common.js';
 
 export const getPosts = (req, res) => {
     const q = req.query.cat ? 'SELECT * FROM posts WHERE cat=?' : 'SELECT * FROM posts';
@@ -27,8 +28,31 @@ export const addPost = (req, res) => {
     jwt.verify(token, 'jwtkey', (err, userInfo) => {
         if (err) return res.status(403).json('驗證token錯誤!');
 
-        const q = 'INSERT INTO posts(`title`,`desc`,`img`,`cat`,`date`,`uid`) VALUES (?)';
-        const values = [req.body.title, req.body.desc, req.body.img, req.body.cat, req.body.date, userInfo.id];
+        return res.status(200).json(req.body);
+        const q = 'INSERT INTO po_003 VALUES (?)';
+        const values = [
+            req.body.title,
+            req.body.cat,
+            req.body.desc,
+            req.body.state,
+            req.body.mark,
+            '',
+            0,
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            '',
+            now(),
+            req.body.userid,
+            now(),
+            req.body.userid,
+        ];
 
         db.query(q, [values], (err, data) => {
             if (err) return res.status(500).json(err);

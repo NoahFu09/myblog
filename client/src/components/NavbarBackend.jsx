@@ -18,7 +18,7 @@ const NavbarBackend = () => {
                         My Blog
                     </h2>
 
-                    <FaBars className="st-button" onClick={click} size="1.5em" />
+                    <FaBars className="st-button" onClick={click} size="1em" />
                 </div>
                 <Link to="/user">用戶設定</Link>
 
