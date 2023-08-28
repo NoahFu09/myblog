@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { FaBars } from 'react-icons/fa';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 const NavbarBackend = () => {
     const title = useRef(null);
@@ -17,8 +18,7 @@ const NavbarBackend = () => {
                     <h2 className="title" ref={title}>
                         My Blog
                     </h2>
-
-                    <FaBars className="st-button" onClick={click} size="1em" />
+                    <FontAwesomeIcon className="st-button" onClick={click} icon={faBars} />
                 </div>
                 <Link to="/user">用戶設定</Link>
 
