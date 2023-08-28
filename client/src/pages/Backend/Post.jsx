@@ -25,7 +25,6 @@ const Post = () => {
             <table>
                 <thead>
                     <tr>
-                        <th>項次</th>
                         <th>標題</th>
                         <th>封面</th>
                         <th>發佈日期</th>
@@ -37,7 +36,6 @@ const Post = () => {
                 <tbody>
                     {posts.map(post => (
                         <tr>
-                            <td>{post.id}</td>
                             <td>{post.title}</td>
                             <td>
                                 <img src={`../upload/${post.img}`} alt="" />

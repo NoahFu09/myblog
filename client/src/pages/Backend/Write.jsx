@@ -11,12 +11,26 @@ const Write = () => {
 
     // console.log(textInput.current?.state.editorHtml);
 
+    const [file, setFile] = useState(null);
     const [cat, setCat] = useState('');
     const [title, setTitle] = useState('');
     const [stus, setState] = useState('');
     const [mark, setMark] = useState([]);
+
+    const upload = async () => {
+        try {
+            const formdata = new FormData();
+            formdata.append('file', file);
+            const res = await axios.post('/upload', formdata);
+            return res.data;
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     const handleClick = async e => {
         e.preventDefault();
+        const imgurl = await upload();
 
         try {
             await axios.post(`/posts/`, {
@@ -26,6 +40,7 @@ const Write = () => {
                 mark,
                 stus,
                 cat,
+                img: file ? imgurl : '',
             });
         } catch (err) {
             console.log(err);
@@ -74,13 +89,15 @@ const Write = () => {
                 </div>
             </div>
 
+            <div className="upload">
+                <input type="file" id="file" onChange={e => setFile(e.target.value[0])} />
+            </div>
+
             {/* <pre value={JSON.stringify(mark)}></pre> */}
             <TagsInput value={mark} onChange={setMark} name="mark" placeHolder="請輸入標籤" />
-
             <div className="editorContainer">
                 <Editor ref={textInput} />
             </div>
-
             <input type="button" id="btn_OKY" value="存檔" onClick={handleClick} />
         </div>
     );

@@ -510,9 +510,13 @@ $lightBrown: #f1e6dd;
             .states {
                 margin-top: 10px;
                 display: flex;
-                .state {
+                .stus {
                     margin-right: 5px;
                 }
+            }
+
+            .upload {
+                margin-top: 10px;
             }
 
             .rti--container {

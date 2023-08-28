@@ -76,7 +76,7 @@ class Editor extends Component {
     render() {
         return (
             <>
-                {<div dangerouslySetInnerHTML={{ __html: this.state.editorHtml }} />}
+                {/* {<div dangerouslySetInnerHTML={{ __html: this.state.editorHtml }} />} */}
 
                 <ReactQuill
                     onChange={this.handleChange}
