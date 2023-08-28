@@ -7,7 +7,7 @@ DROP TABLE blog.po_002;
 
 CREATE TABLE blog.po_002 (
   po_002_cat1 VARCHAR(45)  NOT NULL,
-	-- 文章分類階層一
+	  -- 文章分類階層一
   po_002_cat2 VARCHAR(45)  NOT NULL,
     -- 文章分類階層二
   po_002_cnam VARCHAR(100) NOT NULL,

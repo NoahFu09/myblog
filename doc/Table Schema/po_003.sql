@@ -7,9 +7,9 @@ DROP TABLE blog.po_003;
 
 CREATE TABLE blog.po_003 (
   po_003_titl NVARCHAR(255)  NOT NULL,
-	-- 文章標題
+	  -- 文章標題
   po_003_cate NVARCHAR(45)   NOT NULL,
-	-- 文章分類 (子底階層)
+	  -- 文章分類 (子底階層)
   /*----------------------------------------*/
   po_003_desc NVARCHAR(4096) NOT NULL,
     -- 文章內容
@@ -17,7 +17,7 @@ CREATE TABLE blog.po_003 (
     -- 文字狀態 (Y=公開, N=不公開)
   po_003_mark NVARCHAR(255)  NOT NULL,
     -- 文章標記 (格式JSON陣列)
-  po_003_imge NVARCHAR(255)          ,
+  po_003_imge NVARCHAR(255)  NOT NULL,
     -- 文章縮圖 (路徑)
   po_003_view INT            NOT NULL,
     -- 觀看人數

@@ -7,7 +7,7 @@ DROP TABLE blog.py_001;
 
 CREATE TABLE blog.py_001 (
   py_001_usid NVARCHAR(20)   NOT NULL,
-	-- 人員編號
+	  -- 人員編號
   /*----------------------------------------*/
   py_001_unme NVARCHAR(50)   NOT NULL,
     -- 人員暱稱
@@ -29,11 +29,11 @@ CREATE TABLE blog.py_001 (
   py_001_cha5 NVARCHAR(255)  NOT NULL,
     -- 文字預留五
   /*----------------------------------------*/
-  py_001_ctdt DATETIME 		 NOT NULL,
+  py_001_ctdt DATETIME 		   NOT NULL,
     -- 建立日期
   py_001_ctno NVARCHAR(40)   NOT NULL,
     -- 建立人員
-  py_001_updt DATETIME 		 NOT NULL,
+  py_001_updt DATETIME 		   NOT NULL,
     -- 更新日期
   py_001_upno NVARCHAR(40)   NOT NULL,
     -- 更新人員
