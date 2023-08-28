@@ -1,20 +1,20 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useRef } from 'react';
 import Editor from '../../components/Editor';
 import 'react-quill/dist/quill.snow.css';
 import { TagsInput } from 'react-tag-input-component';
 import { AuthContext } from '../../context/authContext';
-import { useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 const Write = () => {
     const { currentUser } = useContext(AuthContext);
-    const ifo = useLocation();
-    console.log(ifo);
+    const textInput = useRef();
+
+    // console.log(textInput.current?.state.editorHtml);
+
     const [cat, setCat] = useState('');
     const [title, setTitle] = useState('');
-    const [state, setState] = useState('');
+    const [stus, setState] = useState('');
     const [mark, setMark] = useState([]);
-    console.log();
     const handleClick = async e => {
         e.preventDefault();
 
@@ -22,9 +22,9 @@ const Write = () => {
             await axios.post(`/posts/`, {
                 userid: currentUser?.py_001_usid,
                 title,
-                desc: Editor.state,
+                desc: textInput.current?.state.editorHtml,
                 mark,
-                state,
+                stus,
                 cat,
             });
         } catch (err) {
@@ -64,21 +64,21 @@ const Write = () => {
             </div>
             <div className="states">
                 <p>文章狀態：</p>
-                <div className="state">
-                    <input type="radio" name="state" value="Y" onChange={e => setState(e.target.value)} />
+                <div className="stus">
+                    <input type="radio" name="stus" value="Y" onChange={e => setState(e.target.value)} />
                     <label htmlFor="show">公開</label>
                 </div>
-                <div className="state">
-                    <input type="radio" name="state" value="N" onChange={e => setState(e.target.value)} />
+                <div className="stus">
+                    <input type="radio" name="stus" value="N" onChange={e => setState(e.target.value)} />
                     <label htmlFor="hide">不公開</label>
                 </div>
             </div>
 
-            {/* <pre>{JSON.stringify(selected)}</pre> */}
+            {/* <pre value={JSON.stringify(mark)}></pre> */}
             <TagsInput value={mark} onChange={setMark} name="mark" placeHolder="請輸入標籤" />
 
             <div className="editorContainer">
-                <Editor />
+                <Editor ref={textInput} />
             </div>
 
             <input type="button" id="btn_OKY" value="存檔" onClick={handleClick} />

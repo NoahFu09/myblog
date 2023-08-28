@@ -28,14 +28,14 @@ export const addPost = (req, res) => {
     jwt.verify(token, 'jwtkey', (err, userInfo) => {
         if (err) return res.status(403).json('驗證token錯誤!');
 
-        return res.status(200).json(req.body);
-        const q = 'INSERT INTO po_003 VALUES (?)';
+        // return res.status(200).json(req.body);
+        const q = 'INSERT INTO blog.po_003 VALUES (?)';
         const values = [
             req.body.title,
             req.body.cat,
             req.body.desc,
-            req.body.state,
-            req.body.mark,
+            req.body.stus,
+            JSON.stringify(req.body.mark),
             '',
             0,
             '',
