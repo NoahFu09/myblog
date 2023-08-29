@@ -128,7 +128,7 @@ $lightBrown: #f1e6dd;
                 left: 0;
                 width: 300px;
                 height: 100%;
-                position: absolute;
+                position: fixed;
                 background-color: #eee;
                 z-index: 100;
                 // visibility: hidden;
@@ -444,7 +444,7 @@ $lightBrown: #f1e6dd;
             flex-direction: column;
             gap: 10px;
             margin-top: 75px;
-
+            height: 100vh;
             input {
                 padding: 8px;
                 border: 1px solid #ccc;
@@ -461,7 +461,7 @@ $lightBrown: #f1e6dd;
         //Post
         .postbackend {
             margin-top: 30px;
-
+            height: 100vh;
             table,
             tr,
             th,
@@ -482,7 +482,7 @@ $lightBrown: #f1e6dd;
 
         .writebackend {
             margin-top: 30px;
-
+            height: 100vh;
             .title {
                 display: flex;
                 margin-top: 10px;

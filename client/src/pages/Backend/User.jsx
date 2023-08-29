@@ -40,7 +40,15 @@ const User = () => {
     };
 
     return (
-        <div className="userbackend">
+        <div
+            className="userbackend"
+            onClick={() => {
+                let e = document.querySelector('#menu-1');
+                if (!e.classList.contains('st-move')) {
+                    document.getElementById('menu-1').classList.toggle('st-move');
+                }
+            }}
+        >
             <h2>用戶設定</h2>
             <hr />
             <input type="text" placeholder="帳號" disabled="disabled" name="userid" defaultValue={currentUser?.py_001_usid} onChange={handleChange} />

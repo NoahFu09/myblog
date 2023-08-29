@@ -21,7 +21,15 @@ const Post = () => {
     }, [cat]);
 
     return (
-        <div className="postbackend">
+        <div
+            className="postbackend"
+            onClick={() => {
+                let e = document.querySelector('#menu-1');
+                if (!e.classList.contains('st-move')) {
+                    document.getElementById('menu-1').classList.toggle('st-move');
+                }
+            }}
+        >
             <table>
                 <thead>
                     <tr>

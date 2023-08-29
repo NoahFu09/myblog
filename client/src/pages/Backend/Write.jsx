@@ -48,7 +48,15 @@ const Write = () => {
     };
 
     return (
-        <div className="writebackend">
+        <div
+            className="writebackend"
+            onClick={() => {
+                let e = document.querySelector('#menu-1');
+                if (!e.classList.contains('st-move')) {
+                    document.getElementById('menu-1').classList.toggle('st-move');
+                }
+            }}
+        >
             <h2>編輯文章</h2>
             <hr />
             <div className="title">
