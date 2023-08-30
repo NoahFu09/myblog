@@ -78,6 +78,22 @@
 八、`nodejs` common.js javascript 方法要回傳字串 加 return 就好。
 九、修改 api auth.js 一直報錯，而且報錯就要重啟 Server ，要注意資料庫回傳的欄位名稱如:`data[0].py_001_pass` ，盡量使用 return res.status(200).json('ok'); 逐行排錯。
 
+## 2023/8/21 ~ 2023/8/30
+
+需求說明：
+一、增加 sidebar。
+二、完成新增文章功能。
+三、修改 文章 Table。
+
+
+開發遇到問題：
+一、用圖層(z-index)和固定定位(fixed) 做 sidebar。
+二、用 fontawesome 6.x最新版本 照 官網文件操作會有問題， 後來照 5.x 長期支援板就沒問題。
+三、隱藏 sidebar 改成點選 icon，可用 urlRef 取得 render 內元素，再用 classList.toggle 切換 CSS樣式。
+四、畫面依瀏覽器視窗高度 CSS 用 100vh。
+五、點選空白處 隱藏 sidebar ， 目前只能在每個 子頁面 render 元素加 onclick 事件。
+六、input type='file' hook onchange 要用 {e => setFile(e.target.files[0])}。
+
 ## 開發時遇到的錯誤
 
 [解决 Node.js mysql 客户端不支持认证协议引发的“ER_NOT_SUPPORTED_AUTH_MODE”问题](https://waylau.com/node.js-mysql-client-does-not-support-authentication-protocol/)

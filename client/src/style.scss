@@ -5,7 +5,7 @@ $lightBrown: #f1e6dd;
     display: flex;
     justify-content: center;
     .container {
-        width: 80%;
+        width: 70%;
         .link {
             text-decoration: none;
             color: inherit;
@@ -481,7 +481,7 @@ $lightBrown: #f1e6dd;
         //WriteBackend
 
         .writebackend {
-            margin-top: 30px;
+            margin-top: 75px;
             height: 100vh;
             .title {
                 display: flex;
@@ -494,6 +494,7 @@ $lightBrown: #f1e6dd;
                 border-radius: 5px;
                 font-size: 16px;
                 outline-color: #3182ce;
+                width: 100%;
                 // #title:focus {
                 //     border: 1px solid #3182ce;
                 // }
@@ -520,12 +521,15 @@ $lightBrown: #f1e6dd;
             }
 
             .rti--container {
-                max-width: 400px;
+                box-sizing: border-box;
+                width: 100%;
+                // max-width: 400px;
                 margin-top: 10px;
             }
 
             .rti--input {
-                max-width: 140px;
+                width: 100%;
+                // max-width: 140px;
             }
 
             .editorContainer {
