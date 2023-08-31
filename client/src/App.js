@@ -11,7 +11,7 @@ import './style.scss';
 import User from './pages/Backend/User';
 import NavbarBackend from './components/NavbarBackend';
 import Post from './pages/Backend/Post';
-import Category from './pages/Backend/Catgory';
+import Category from './pages/Backend/Category';
 
 const Layout = () => {
     return (

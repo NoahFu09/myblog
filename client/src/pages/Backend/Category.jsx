@@ -3,16 +3,14 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 
-const Catgory = () => {
+const Category = () => {
     const [cat, setCat] = useState();
-    const [data, setData] = useState([]);
-
-    console.log(cat);
+    const [categories, setCategories] = useState([]);
 
     const handleClick = async () => {
         try {
-            const res = await axios.post('/categories', cat);
-            setData(res.data);
+            const res = await axios.post('/categories', { cat });
+            setCategories(res.data);
         } catch (err) {
             console.log(err);
         }
@@ -20,7 +18,7 @@ const Catgory = () => {
 
     return (
         <div
-            className="pos001"
+            className="category"
             onClick={() => {
                 if (!document.querySelector('#menu-1').classList.contains('st-move')) {
                     document.querySelector('#menu-1').classList.toggle('st-move');
@@ -41,8 +39,25 @@ const Catgory = () => {
                 <input type="button" value="新增" />
             </div>
 
-            <div id="showData"></div>
+            <div id="showData">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>分類代號</th>
+                            <th>分類中文</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {categories.map(category => (
+                            <tr>
+                                <td>{category.po_001_cat1}</td>
+                                <td>{category.po_001_cnam}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
     );
 };
-export default Catgory;
+export default Category;

@@ -26,7 +26,7 @@ const NavbarBackend = () => {
 
                 <Link to="/manage/write">發布文章</Link>
 
-                <Link to="/manage/pos001">文章分類</Link>
+                <Link to="/manage/category">分類設定</Link>
 
                 <Link to="/">回首頁</Link>
             </nav>
