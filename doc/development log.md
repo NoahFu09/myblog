@@ -93,6 +93,7 @@
 四、畫面依瀏覽器視窗高度 CSS 用 100vh。
 五、點選空白處 隱藏 sidebar ， 目前只能在每個 子頁面 render 元素加 onclick 事件。
 六、input type='file' hook onchange 要用 {e => setFile(e.target.files[0])}。
+七、終端機編譯 log 顯示 "start value has mixed support, consider using flex-start instead"，原來是使用 flex 對齊要書寫成 `flex-start`。
 
 ## 開發時遇到的錯誤
 
@@ -106,6 +107,7 @@
 
 > 出現 map() is not a function 錯誤訊息，請先檢查 DB 是否有資料，或 map 方法內引用的參數有資料。
 
+[[BUG]处理“start value has mixed support, consider using flex-start instead”编译警告](https://blog.csdn.net/smallNut/article/details/104246912)
 
 ## 參考資料
 

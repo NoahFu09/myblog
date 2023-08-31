@@ -11,6 +11,7 @@ import './style.scss';
 import User from './pages/Backend/User';
 import NavbarBackend from './components/NavbarBackend';
 import Post from './pages/Backend/Post';
+import Category from './pages/Backend/Catgory';
 
 const Layout = () => {
     return (
@@ -63,16 +64,20 @@ const router = createBrowserRouter([
         element: <LayoutBackend />,
         children: [
             {
-                path: '/User',
+                path: '/manage/user',
                 element: <User />,
             },
             {
-                path: '/Post',
+                path: '/manage/post',
                 element: <Post />,
             },
             {
-                path: '/Write',
+                path: '/manage/write',
                 element: <Write />,
+            },
+            {
+                path: '/manage/category', //網址輸入大小寫沒差
+                element: <Category />,
             },
         ],
     },

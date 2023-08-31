@@ -20,11 +20,13 @@ const NavbarBackend = () => {
                     </h2>
                     <FontAwesomeIcon className="st-button" onClick={click} icon={faBars} />
                 </div>
-                <Link to="/user">用戶設定</Link>
+                <Link to="/manage/user">用戶設定</Link>
 
-                <Link to="/post">文章管理</Link>
+                <Link to="/manage/post">文章管理</Link>
 
-                <Link to="/write">發布文章</Link>
+                <Link to="/manage/write">發布文章</Link>
+
+                <Link to="/manage/pos001">文章分類</Link>
 
                 <Link to="/">回首頁</Link>
             </nav>
