@@ -19,9 +19,9 @@ const Write = () => {
 
     const upload = async () => {
         try {
-            const formdata = new FormData();
-            formdata.append('file', file);
-            const res = await axios.post('/upload', formdata);
+            const formData = new FormData();
+            formData.append('file', file);
+            const res = await axios.post('/upload', formData);
             return res.data;
         } catch (err) {
             console.log(err);
@@ -30,7 +30,7 @@ const Write = () => {
 
     const handleClick = async e => {
         e.preventDefault();
-        const imgurl = await upload();
+        const imgUrl = await upload();
 
         try {
             await axios.post(`/posts/`, {
@@ -40,7 +40,7 @@ const Write = () => {
                 mark,
                 stus,
                 cat,
-                img: file ? imgurl : '',
+                img: file ? imgUrl : '',
             });
         } catch (err) {
             console.log(err);
@@ -60,7 +60,7 @@ const Write = () => {
             <h2>編輯文章</h2>
             <hr />
             <div className="title">
-                <input type="text" id="title" placeholder="請輸入標題" value={title} size="30" onChange={e => setTitle(e.target.value)} />
+                <input type="text" id="title" placeholder="請輸入標題" value={title} onChange={e => setTitle(e.target.value)} />
             </div>
             <div className="categories">
                 <p>文章分類：</p>
@@ -98,7 +98,7 @@ const Write = () => {
             </div>
 
             <div className="upload">
-                <input type="file" id="file" onChange={e => setFile(e.target.value[0])} />
+                <input type="file" name="" id="file" onChange={e => setFile(e.target.files[0])} />
             </div>
 
             {/* <pre value={JSON.stringify(mark)}></pre> */}
