@@ -160,6 +160,27 @@ $lightBrown: #f1e6dd;
                         color: black;
                     }
                 }
+
+                .bt-1 {
+                    font-size: 18px;
+                    padding: 15px 30px;
+                    cursor: pointer;
+                    &:hover {
+                        background-color: #ddd;
+                        color: black;
+                    }
+                }
+            }
+
+            .hidecat {
+                display: none;
+            }
+
+            ul {
+                padding: 0;
+                li {
+                    list-style: none;
+                }
             }
         }
 

@@ -1,14 +1,18 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 
 const NavbarBackend = () => {
     const title = useRef(null);
     const menu = useRef(null);
+    const category = useRef(null);
     const click = () => {
         // title.current.classList.toggle('st-color');
         menu.current.classList.toggle('st-move');
+    };
+    const hidecatClick = () => {
+        category.current.classList.toggle('hidecat');
     };
 
     return (
@@ -26,7 +30,27 @@ const NavbarBackend = () => {
 
                 <Link to="/manage/write">發布文章</Link>
 
-                <Link to="/manage/category">分類設定</Link>
+                <p className="bt-1" onClick={hidecatClick}>
+                    分類設定 &nbsp;
+                    <FontAwesomeIcon icon={faCaretDown} />
+                </p>
+
+                <ul className="hidecat" ref={category}>
+                    <li>
+                        <Link to="/manage/category">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <FontAwesomeIcon icon={faCaretRight} />
+                            &nbsp; 分類主項
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/manage/category">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <FontAwesomeIcon icon={faCaretRight} />
+                            &nbsp; 分類次項
+                        </Link>
+                    </li>
+                </ul>
 
                 <Link to="/">回首頁</Link>
             </nav>
