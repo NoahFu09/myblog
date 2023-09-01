@@ -43,7 +43,7 @@ const Post = () => {
                 </thead>
                 <tbody>
                     {posts.map(post => (
-                        <tr>
+                        <tr key={post.title}>
                             <td>{post.title}</td>
                             <td>
                                 <img src={`../upload/${post.img}`} alt="" />

@@ -49,7 +49,7 @@ const Category = () => {
                     </thead>
                     <tbody>
                         {categories.map(category => (
-                            <tr>
+                            <tr key={category.po_001_cat1}>
                                 <td>{category.po_001_cat1}</td>
                                 <td>{category.po_001_cnam}</td>
                             </tr>
