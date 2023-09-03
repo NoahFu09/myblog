@@ -6,6 +6,7 @@ $lightBrown: #f1e6dd;
     justify-content: center;
     .container {
         width: 70%;
+        height: 100vh;
         .link {
             text-decoration: none;
             color: inherit;
@@ -575,6 +576,95 @@ $lightBrown: #f1e6dd;
                 &:hover {
                     background-color: lightgray;
                     border: 1px solid #bbb;
+                }
+            }
+        }
+
+        //category
+
+        .category {
+            // background-color: #3182ce;
+            margin-top: 75px;
+            .container {
+                width: 100%;
+
+                .serach {
+                    margin-top: 30px;
+                    display: flex;
+                    gap: 5px;
+                    input {
+                        padding: 8px;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        font-size: 16px;
+                        outline-color: #3182ce;
+                    }
+
+                    .btn {
+                        cursor: pointer;
+
+                        &:hover {
+                            background-color: #ddd;
+                        }
+                    }
+                }
+
+                .showdata {
+                    margin-top: 15px;
+
+                    table,
+                    th,
+                    tr,
+                    td {
+                        border: 1px solid #333;
+                        border-collapse: collapse;
+                        padding: 5px;
+                    }
+                }
+
+                dialog {
+                    margin: 0 auto;
+                    width: 600px;
+                    height: 400px;
+                    border: 1px solid #333;
+                }
+            }
+        }
+
+        .categoryedit {
+            .container {
+                margin-top: 75px;
+                width: 100%;
+                .showdata {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    margin-top: 30px;
+                    input {
+                        padding: 8px;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        font-size: 16px;
+                        outline-color: #3182ce;
+                    }
+                }
+
+                .btn {
+                    margin-top: 10px;
+                    display: flex;
+                    gap: 5px;
+                    font-size: 14px;
+                    a {
+                        border: 1px solid #333;
+                        padding: 5px;
+                        text-decoration: none;
+                        border-radius: 3px;
+                        background-color: #eee;
+                        color: black;
+                        &:hover {
+                            background-color: #ddd;
+                        }
+                    }
                 }
             }
         }

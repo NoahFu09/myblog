@@ -12,6 +12,7 @@ import User from './pages/Backend/User';
 import NavbarBackend from './components/NavbarBackend';
 import Post from './pages/Backend/Post';
 import Category from './pages/Backend/Category';
+import CategoryEdit from './pages/Backend/CategoryEdit';
 
 const Layout = () => {
     return (
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
             {
                 path: '/manage/category', //網址輸入大小寫沒差
                 element: <Category />,
+            },
+            {
+                path: '/manage/CategoryEdit',
+                element: <CategoryEdit />,
             },
         ],
     },

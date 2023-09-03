@@ -1,7 +1,9 @@
 //文章分類
-
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
 
 const Category = () => {
     const [cat, setCat] = useState();
@@ -26,36 +28,46 @@ const Category = () => {
             }}
         >
             <div className="container">
-                <h2>文章分類</h2>
+                <h2>
+                    分類設定 <FontAwesomeIcon icon={faAnglesRight} /> 分類主項
+                </h2>
                 <hr></hr>
-                <input
-                    type="text"
-                    placeholder="請輸入要查詢的文章分類"
-                    onChange={e => {
-                        setCat(e.target.value);
-                    }}
-                />
-                <input type="button" value="查詢" onClick={handleClick} />
-                <input type="button" value="新增" />
-            </div>
 
-            <div id="showData">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>分類代號</th>
-                            <th>分類中文</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {categories.map(category => (
-                            <tr key={category.po_001_cat1}>
-                                <td>{category.po_001_cat1}</td>
-                                <td>{category.po_001_cnam}</td>
+                <div className="serach">
+                    <input
+                        type="text"
+                        placeholder="請輸入要查詢的文章分類"
+                        onChange={e => {
+                            setCat(e.target.value);
+                        }}
+                    />
+                    <input className="btn" type="button" value="查詢" onClick={handleClick} />
+                    <Link to={'/manage/CategoryEdit'}>新增</Link>
+                </div>
+
+                <div className="showdata">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>分類代號</th>
+                                <th>分類中文</th>
+                                <th>動作</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {categories.map(category => (
+                                <tr key={category.po_001_cat1}>
+                                    <td>{category.po_001_cat1}</td>
+                                    <td>{category.po_001_cnam}</td>
+                                    <td>
+                                        <Link to="">修改</Link>
+                                        <Link to="">刪除</Link>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     );
