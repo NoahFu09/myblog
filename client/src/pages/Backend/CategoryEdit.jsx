@@ -12,12 +12,10 @@ const CategoryEdit = () => {
     });
 
     const handleChange = e => {
-        setInputs(prev => ({ ...prev, [e.taget.name]: e.taget.value }));
+        setInputs(prev => ({ ...prev, [e.target.name]: e.target.value }));
     };
 
-    const handleClick = async () => {
-        const res = await axios.post('/categories');
-    };
+    const handleClick = async () => {};
     return (
         <div className="categoryedit">
             <div className="container">
@@ -25,17 +23,14 @@ const CategoryEdit = () => {
                     <h2>分類主項維護</h2>
                     <hr></hr>
                 </div>
-
-                <div className="showdata">
+                <form className="showdata">
                     <input type="text" name="cat1" placeholder="分類代號" onChange={handleChange} />
                     <input type="text" name="cnam" placeholder="分類中文" onChange={handleChange} />
-                </div>
 
-                <div className="btn">
-                    <input type="button" value="刪除" />
-                    <input type="button" value="存檔" onClick={handleClick} />
+                    <button onClick={handleClick}>刪除</button>
+                    <button onClick={handleClick}>存檔</button>
                     <Link to="/manage/Category">取消</Link>
-                </div>
+                </form>
             </div>
         </div>
     );

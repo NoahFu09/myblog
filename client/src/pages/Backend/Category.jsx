@@ -11,7 +11,7 @@ const Category = () => {
 
     const handleClick = async () => {
         try {
-            const res = await axios.post('/categories', { cat });
+            const res = await axios.get('/categories', { cat });
             setCategories(res.data);
         } catch (err) {
             console.log(err);
