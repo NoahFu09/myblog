@@ -635,11 +635,17 @@ $lightBrown: #f1e6dd;
             .container {
                 margin-top: 75px;
                 width: 100%;
+
+                h2 {
+                    letter-spacing: 3px;
+                    color: #555;
+                }
+
                 .showdata {
+                    gap: 5px;
+                    margin-top: 10px;
                     display: flex;
                     flex-direction: column;
-                    gap: 5px;
-                    margin-top: 30px;
                     input {
                         padding: 8px;
                         border: 1px solid #ccc;
@@ -647,24 +653,14 @@ $lightBrown: #f1e6dd;
                         font-size: 16px;
                         outline-color: #3182ce;
                     }
+                    button {
+                        padding: 8px;
+                        font-size: 16px;
+                    }
                 }
 
-                .btn {
-                    margin-top: 10px;
-                    display: flex;
-                    gap: 5px;
-                    font-size: 14px;
-                    a {
-                        border: 1px solid #333;
-                        padding: 5px;
-                        text-decoration: none;
-                        border-radius: 3px;
-                        background-color: #eee;
-                        color: black;
-                        &:hover {
-                            background-color: #ddd;
-                        }
-                    }
+                a {
+                    color: #3182ce;
                 }
             }
         }

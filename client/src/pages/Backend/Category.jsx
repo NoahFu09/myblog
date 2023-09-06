@@ -2,8 +2,6 @@
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAnglesRight } from '@fortawesome/free-solid-svg-icons';
 
 const Category = () => {
     const [cat, setCat] = useState();
@@ -28,9 +26,7 @@ const Category = () => {
             }}
         >
             <div className="container">
-                <h2>
-                    分類設定 <FontAwesomeIcon icon={faAnglesRight} /> 分類主項
-                </h2>
+                <h2>分類主項</h2>
                 <hr></hr>
 
                 <div className="serach">

@@ -18,10 +18,10 @@ export const addCategories = (req, res) => {
         if (err) return res.status(500).send(err);
         if (data.length) return res.status(409).json('分類代號(主)已存在!');
 
-        const q = 'INSERT INTO po_001 VALUES (?)';
+        const q = 'INSERT INTO blog.po_001 VALUES (?)';
         const value = [req.body.cat1, req.body.cnam, '', '', '', '', '', now(), now()];
 
-        db.query(q, value, (err, data) => {
+        db.query(q, [value], (err, data) => {
             if (err) return res.status(500).send(err);
             return res.status(200).json('分類代號(主)存檔成功！');
         });
