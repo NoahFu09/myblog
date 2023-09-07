@@ -639,6 +639,17 @@ $lightBrown: #f1e6dd;
                         border-collapse: collapse;
                         padding: 5px;
                     }
+
+                    a {
+                        text-decoration: none;
+                        margin: 5px;
+                        border: 1px solid #333;
+                        background-color: #eee;
+                        color: #000;
+                        &:hover {
+                            background-color: #ddd;
+                        }
+                    }
                 }
             }
         }

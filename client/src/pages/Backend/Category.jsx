@@ -2,6 +2,7 @@
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
+import moment from 'moment';
 
 const Category = () => {
     const [cat, setCat] = useState();
@@ -48,18 +49,15 @@ const Category = () => {
                             <tr>
                                 <th>分類代號</th>
                                 <th>分類中文</th>
-                                <th>動作</th>
+                                <th>更新時間</th>
                             </tr>
                         </thead>
                         <tbody>
                             {categories.map(category => (
-                                <tr key={category.po_001_cat1}>
+                                <tr id={category.po_001_cat1} key={category.po_001_cat1}>
                                     <td>{category.po_001_cat1}</td>
                                     <td>{category.po_001_cnam}</td>
-                                    <td>
-                                        <Link to="">修改</Link>
-                                        <Link to="">刪除</Link>
-                                    </td>
+                                    <td>{moment(category.po_001_updt).format('YYYY-MM-DD')}</td>
                                 </tr>
                             ))}
                         </tbody>
