@@ -7,9 +7,9 @@ const Category = () => {
     const [cat, setCat] = useState();
     const [categories, setCategories] = useState([]);
 
-    const handleClick = async () => {
+    const handleClickInq = async () => {
         try {
-            const res = await axios.get('/categories', { cat });
+            const res = await axios.post('/category/getCategories', { cat });
             setCategories(res.data);
         } catch (err) {
             console.log(err);
@@ -26,9 +26,10 @@ const Category = () => {
             }}
         >
             <div className="container">
-                <h2>分類主項</h2>
-                <hr></hr>
-
+                <div className="title">
+                    <h2>文章分類主項</h2>
+                    <hr></hr>
+                </div>
                 <div className="serach">
                     <input
                         type="text"
@@ -37,8 +38,8 @@ const Category = () => {
                             setCat(e.target.value);
                         }}
                     />
-                    <input className="btn" type="button" value="查詢" onClick={handleClick} />
-                    <Link to={'/manage/CategoryEdit'}>新增</Link>
+                    <button onClick={handleClickInq}>查詢</button>
+                    <Link to={'/manage/categoryedit'}>新增</Link>
                 </div>
 
                 <div className="showdata">

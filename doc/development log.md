@@ -160,3 +160,7 @@
 [什麼是 useEffect ?](https://www.youtube.com/watch?v=258hmDa-65o&list=LL&index=1)
 
 [utf8mb3，utf8mb4 和utf8的含义和由来](https://blog.csdn.net/htuhxf/article/details/90676341)
+
+[擴展運算子 - 三個點在ES6的使用](https://ithelp.ithome.com.tw/articles/10195477)
+
+[Rest參數 - 三個點在ES6的使用](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)

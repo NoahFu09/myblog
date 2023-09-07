@@ -40,14 +40,14 @@ const NavbarBackend = () => {
                         <Link to="/manage/category">
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <FontAwesomeIcon icon={faCaretRight} />
-                            &nbsp; 分類主項
+                            &nbsp; 文章分類主項
                         </Link>
                     </li>
                     <li>
                         <Link to="/manage/category">
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <FontAwesomeIcon icon={faCaretRight} />
-                            &nbsp; 分類次項
+                            &nbsp; 文章分類次項
                         </Link>
                     </li>
                 </ul>

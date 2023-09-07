@@ -38,7 +38,19 @@ export const login = (req, res) => {
         if (!isPasswordCorrect) return res.status(400).json('錯誤的帳號或密碼!');
 
         const token = jwt.sign({ id: data[0].userid }, 'jwtkey');
-        const { py_001_pass, ...other } = data[0];
+        const {
+            py_001_imge,
+            py_001_ctno,
+            py_001_updt,
+            py_001_ctdt,
+            py_001_pass,
+            py_001_cha1,
+            py_001_cha2,
+            py_001_cha3,
+            py_001_cha4,
+            py_001_cha5,
+            ...other
+        } = data[0];
 
         //只有透過API才可以取到 access_token
         return res.cookie('access_token', token, { httpOnly: true }).status(200).json(other);

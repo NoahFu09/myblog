@@ -81,7 +81,7 @@ const router = createBrowserRouter([
                 element: <Category />,
             },
             {
-                path: '/manage/CategoryEdit',
+                path: '/manage/categoryedit',
                 element: <CategoryEdit />,
             },
         ],
