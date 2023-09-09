@@ -651,6 +651,19 @@ $lightBrown: #f1e6dd;
                         }
                     }
                 }
+
+                .cat {
+                    //even 表示雙數 odd表示基數
+                    &:nth-child(even) {
+                        background-color: #eee;
+                    }
+
+                    &:hover {
+                        background-color: #0080ff;
+                        color: #fff;
+                        cursor: pointer;
+                    }
+                }
             }
         }
 

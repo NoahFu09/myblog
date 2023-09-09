@@ -1,10 +1,11 @@
 //文章分類
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import moment from 'moment';
 
 const Category = () => {
+    const navigate = useNavigate();
     const [cat, setCat] = useState();
     const [categories, setCategories] = useState([]);
 
@@ -53,8 +54,17 @@ const Category = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {categories.map(category => (
-                                <tr id={category.po_001_cat1} key={category.po_001_cat1}>
+                            {categories.map((category, i) => (
+                                <tr
+                                    className="cat"
+                                    id={category.po_001_cat1}
+                                    key={category.po_001_cat1}
+                                    onClick={() => {
+                                        navigate('/manage/categoryedit', {
+                                            state: { categories: categories[i] },
+                                        });
+                                    }}
+                                >
                                     <td>{category.po_001_cat1}</td>
                                     <td>{category.po_001_cnam}</td>
                                     <td>{moment(category.po_001_updt).format('YYYY-MM-DD')}</td>

@@ -1,19 +1,19 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const CategoryEdit = () => {
-    // const [cat1, setCat1] = useState();
-    // const [cnam, setCnam] = useState();
-
     const navigate = useNavigate();
+    const [resData, setResData] = useState();
+
+    const location = useLocation();
+    const po_001_cat1 = location.state?.categories.po_001_cat1;
+    const po_001_cnam = location.state?.categories.po_001_cnam;
 
     const [inputs, setInputs] = useState({
-        cat1: '',
-        cnam: '',
+        cat1: po_001_cat1,
+        cnam: po_001_cnam,
     });
-
-    const [resData, setResData] = useState();
 
     const handleChange = e => {
         setInputs(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -33,6 +33,7 @@ const CategoryEdit = () => {
     const handClickCancle = () => {
         navigate('/manage/category');
     };
+
     return (
         <div
             className="categoryedit"
@@ -46,13 +47,10 @@ const CategoryEdit = () => {
                 <div className="title">
                     <h2>文章分類主項維護</h2>
                     <hr></hr>
-                    {/* <p>
-                        上一層: <Link to="/manage/category">文章分類主項</Link>
-                    </p> */}
                 </div>
                 <form className="showdata">
-                    <input type="text" name="cat1" placeholder="分類代號" onChange={handleChange} />
-                    <input type="text" name="cnam" placeholder="分類中文" onChange={handleChange} />
+                    <input type="text" id="cat1" name="cat1" placeholder="分類代號" defaultValue={po_001_cat1} onChange={handleChange} />
+                    <input type="text" name="cnam" placeholder="分類中文" defaultValue={po_001_cnam} onChange={handleChange} />
                     {resData && <p>{resData}</p>}
                 </form>
                 <button onClick={handleClickSave}>存檔</button>
