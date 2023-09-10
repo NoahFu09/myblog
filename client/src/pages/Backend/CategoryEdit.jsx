@@ -23,7 +23,21 @@ const CategoryEdit = () => {
     const handleClickSave = async e => {
         e.preventDefault();
         try {
-            await axios.post('/category/addCategories', inputs);
+            const res = await axios.post('/category/addCategories', inputs);
+            alert(res.data);
+            navigate('/manage/category');
+        } catch (err) {
+            console.log(err);
+            setResData(err.response.data);
+        }
+    };
+
+    const handleClickDelete = async e => {
+        e.preventDefault();
+        try {
+            const res = await axios.post('/category/delCategories', inputs);
+            alert(res.data);
+            navigate('/manage/category');
         } catch (err) {
             console.log(err);
             setResData(err.response.data);
@@ -49,12 +63,12 @@ const CategoryEdit = () => {
                     <hr></hr>
                 </div>
                 <form className="showdata">
-                    <input type="text" id="cat1" name="cat1" placeholder="分類代號" defaultValue={po_001_cat1} onChange={handleChange} />
+                    <input type="text" name="cat1" placeholder="分類代號" defaultValue={po_001_cat1} onChange={handleChange} />
                     <input type="text" name="cnam" placeholder="分類中文" defaultValue={po_001_cnam} onChange={handleChange} />
                     {resData && <p>{resData}</p>}
                 </form>
                 <button onClick={handleClickSave}>存檔</button>
-                <button>刪除</button>
+                <button onClick={handleClickDelete}>刪除</button>
                 <button onClick={handClickCancle}>取消</button>
             </div>
         </div>
