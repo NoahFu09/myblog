@@ -46,15 +46,15 @@ export const delCategories = (req, res) => {
     jwt.verify(token, 'jwtkey', (err, userInfo) => {
         if (err) return res.status(401).json('授權未經過許可!');
     });
-
+    const po_001_cat1 = req.params.id;
     const q = 'SELECT * FROM blog.po_001 WHERE po_001_cat1=?';
 
-    db.query(q, [req.body.cat1], (err, data) => {
+    db.query(q, [po_001_cat1], (err, data) => {
         if (err) return res.status(500).send(err);
-        if (!data.length) return res.status(409).json('分類代號: ' + req.body.cat1 + ' 不存在，請檢查謝謝!');
+        if (!data.length) return res.status(409).json('分類代號: ' + po_001_cat1 + ' 不存在，請檢查謝謝!');
 
         const q = 'DELETE FROM blog.po_001 WHERE po_001_cat1=?';
-        const value = [req.body.cat1];
+        const value = [po_001_cat1];
 
         db.query(q, [value], (err, data) => {
             if (err) return res.status(500).send(err);

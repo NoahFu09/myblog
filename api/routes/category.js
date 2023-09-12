@@ -5,5 +5,5 @@ const router = express.Router();
 
 router.post('/getCategories', getCategories);
 router.post('/addCategories', addCategories);
-router.post('/delCategories', delCategories);
+router.delete('/delCategories/:id', delCategories);
 export default router;

@@ -15,6 +15,10 @@ const CategoryEdit = () => {
         cnam: po_001_cnam,
     });
 
+    const toInputUppercase = e => {
+        e.target.value = e.target.value.toUpperCase();
+    };
+
     const handleChange = e => {
         setInputs(prev => ({ ...prev, [e.target.name]: e.target.value }));
         setResData(null);
@@ -35,7 +39,7 @@ const CategoryEdit = () => {
     const handleClickDelete = async e => {
         e.preventDefault();
         try {
-            const res = await axios.post('/category/delCategories', inputs);
+            const res = await axios.delete(`/category/delCategories/${inputs.cat1}`);
             alert(res.data);
             navigate('/manage/category');
         } catch (err) {
@@ -63,7 +67,14 @@ const CategoryEdit = () => {
                     <hr></hr>
                 </div>
                 <form className="showdata">
-                    <input type="text" name="cat1" placeholder="分類代號" defaultValue={po_001_cat1} onChange={handleChange} />
+                    <input
+                        type="text"
+                        name="cat1"
+                        placeholder="分類代號"
+                        onInput={toInputUppercase}
+                        defaultValue={po_001_cat1}
+                        onChange={handleChange}
+                    />
                     <input type="text" name="cnam" placeholder="分類中文" defaultValue={po_001_cnam} onChange={handleChange} />
                     {resData && <p>{resData}</p>}
                 </form>
