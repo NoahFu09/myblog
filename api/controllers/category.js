@@ -62,3 +62,27 @@ export const delCategories = (req, res) => {
         });
     });
 };
+
+export const editCategories = (req, res) => {
+    const token = req.cookies.access_token;
+    if (!token) return res.status(401).json('沒有經過授權!');
+
+    jwt.verify(token, 'jwtkey', (err, userInfo) => {
+        if (err) return res.status(401).json('授權未經過許可!');
+
+        const q = 'SELECT * FROM blog.po_001 WHERE po_001_cat1=?';
+        const value = req.params.id;
+
+        db.query(q, [value], (err, data) => {
+            if (err) return res.status(500).json('分類代號: ' + value + ' 不存在，請檢查謝謝!');
+
+            const q = 'UPDATE blog.po_001 SET po_001_cnam=?, po_001_updt=? WHERE po_001_cat1=?';
+            const value = [req.body.cnam, now()];
+
+            db.query(q, [...value, req.params.id], (err, data) => {
+                if (err) return res.status(500).send(err);
+                return res.status(200).json('更新成功!');
+            });
+        });
+    });
+};

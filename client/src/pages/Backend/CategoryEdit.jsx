@@ -6,9 +6,9 @@ const CategoryEdit = () => {
     const navigate = useNavigate();
     const [resData, setResData] = useState();
 
-    const location = useLocation();
-    const po_001_cat1 = location.state?.categories.po_001_cat1;
-    const po_001_cnam = location.state?.categories.po_001_cnam;
+    const state = useLocation().state;
+    const po_001_cat1 = state?.po_001_cat1;
+    const po_001_cnam = state?.po_001_cnam;
 
     const [inputs, setInputs] = useState({
         cat1: po_001_cat1,
@@ -27,7 +27,9 @@ const CategoryEdit = () => {
     const handleClickSave = async e => {
         e.preventDefault();
         try {
-            const res = await axios.post('/category/addCategories', inputs);
+            const res = state
+                ? await axios.put(`/category/editCategories/${po_001_cat1}`, { cnam: inputs.cnam })
+                : await axios.post('/category/addCategories', inputs);
             alert(res.data);
             navigate('/manage/category');
         } catch (err) {
@@ -74,6 +76,7 @@ const CategoryEdit = () => {
                         onInput={toInputUppercase}
                         defaultValue={po_001_cat1}
                         onChange={handleChange}
+                        disabled={state ? true : false}
                     />
                     <input type="text" name="cnam" placeholder="分類中文" defaultValue={po_001_cnam} onChange={handleChange} />
                     {resData && <p>{resData}</p>}

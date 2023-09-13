@@ -61,7 +61,7 @@ const Category = () => {
                                     key={category.po_001_cat1}
                                     onClick={() => {
                                         navigate('/manage/categoryedit', {
-                                            state: { categories: categories[i] },
+                                            state: categories[i],
                                         });
                                     }}
                                 >
