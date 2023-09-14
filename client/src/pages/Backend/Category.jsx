@@ -1,7 +1,7 @@
 //文章分類
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 
 const Category = () => {
@@ -9,14 +9,17 @@ const Category = () => {
     const [cat, setCat] = useState();
     const [categories, setCategories] = useState([]);
 
-    const handleClickInq = async () => {
-        try {
-            const res = await axios.post('/category/getCategories', { cat });
-            setCategories(res.data);
-        } catch (err) {
-            console.log(err);
-        }
-    };
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await axios.post('/category/getCategories', { cat });
+                setCategories(res.data);
+            } catch (err) {
+                console.log(err);
+            }
+        };
+        fetchData();
+    }, [cat]);
 
     return (
         <div
@@ -29,18 +32,18 @@ const Category = () => {
         >
             <div className="container">
                 <div className="title">
+                    <p>首頁&gt;文章設定&gt;文章分類主項</p>
                     <h2>文章分類主項</h2>
                     <hr></hr>
                 </div>
                 <div className="serach">
                     <input
                         type="text"
-                        placeholder="請輸入要查詢的文章分類"
+                        placeholder="請輸入要查詢的分類中文"
                         onChange={e => {
                             setCat(e.target.value);
                         }}
                     />
-                    <button onClick={handleClickInq}>查詢</button>
                     <Link to={'/manage/categoryedit'}>新增</Link>
                 </div>
 

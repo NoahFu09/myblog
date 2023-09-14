@@ -1,18 +1,28 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faCaretDown, faCaretRight } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 
 const NavbarBackend = () => {
     const title = useRef(null);
     const menu = useRef(null);
-    const category = useRef(null);
-    const click = () => {
-        // title.current.classList.toggle('st-color');
+    const post = useRef(null);
+    const sys = useRef(null);
+
+    const sidebarclick = () => {
         menu.current.classList.toggle('st-move');
     };
-    const hidecatClick = () => {
-        category.current.classList.toggle('hidecat');
+    const navClick = e => {
+        switch (e) {
+            case 'sys':
+                sys.current.classList.toggle('nav-hide');
+                break;
+            case 'post':
+                post.current.classList.toggle('nav-hide');
+                break;
+            default:
+                break;
+        }
     };
 
     return (
@@ -20,39 +30,57 @@ const NavbarBackend = () => {
             <nav className="st-menu st-move" id="menu-1" ref={menu}>
                 <div className="icon">
                     <h2 className="title" ref={title}>
-                        My Blog
+                        <Link to="/">My Blog</Link>
                     </h2>
-                    <FontAwesomeIcon className="st-button" onClick={click} icon={faBars} />
+                    <FontAwesomeIcon className="st-button" onClick={sidebarclick} icon={faBars} />
                 </div>
-                <Link to="/manage/user">用戶設定</Link>
 
-                <Link to="/manage/post">文章管理</Link>
-
-                <Link to="/manage/write">發布文章</Link>
-
-                <p className="bt-1" onClick={hidecatClick}>
-                    分類設定 &nbsp;
-                    <FontAwesomeIcon icon={faCaretDown} />
+                <p className="nav-first" onClick={() => navClick('sys')}>
+                    系統設定
                 </p>
-
-                <ul className="hidecat" ref={category}>
+                <ul className="nav-hide" ref={sys}>
                     <li>
-                        <Link to="/manage/category">
+                        <Link to="/manage/userpassword">
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <FontAwesomeIcon icon={faCaretRight} />
-                            &nbsp; 文章分類主項
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/manage/category">
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <FontAwesomeIcon icon={faCaretRight} />
-                            &nbsp; 文章分類次項
+                            &nbsp;&nbsp;密碼更新
                         </Link>
                     </li>
                 </ul>
 
-                <Link to="/">回首頁</Link>
+                <p className="nav-first" onClick={() => navClick('post')}>
+                    文章設定
+                </p>
+                <ul className="nav-hide" ref={post}>
+                    <li>
+                        <Link to="/manage/category">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <FontAwesomeIcon icon={faCaretRight} />
+                            &nbsp;&nbsp;文章分類主項
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/manage/category">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <FontAwesomeIcon icon={faCaretRight} />
+                            &nbsp;&nbsp;文章分類次項
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/manage/post">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <FontAwesomeIcon icon={faCaretRight} />
+                            &nbsp;&nbsp;文章管理
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/manage/write">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <FontAwesomeIcon icon={faCaretRight} />
+                            &nbsp;&nbsp;發布文章
+                        </Link>
+                    </li>
+                </ul>
             </nav>
         </div>
     );

@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../context/authContext';
 import axios from 'axios';
 
-const User = () => {
+const UserPassword = () => {
     const { currentUser } = useContext(AuthContext);
 
     const [res, setRespone] = useState();
@@ -41,7 +41,7 @@ const User = () => {
 
     return (
         <div
-            className="userbackend"
+            className="UserPassword"
             onClick={() => {
                 let e = document.querySelector('#menu-1');
                 if (!e.classList.contains('st-move')) {
@@ -49,7 +49,7 @@ const User = () => {
                 }
             }}
         >
-            <h2>用戶設定</h2>
+            <h2>密碼更新</h2>
             <hr />
             <input type="text" placeholder="帳號" disabled="disabled" name="userid" defaultValue={currentUser?.py_001_usid} onChange={handleChange} />
 
@@ -67,4 +67,4 @@ const User = () => {
     );
 };
 
-export default User;
+export default UserPassword;

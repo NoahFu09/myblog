@@ -166,3 +166,7 @@
 [Rest參數 - 三個點在ES6的使用](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters)
 
 [怎麼將 input 加入 disabled 事件](https://surajsharma.net/blog/react-disable-input-field)
+
+[NodeJs 版本控制符號](https://animpen.com/article/pen/W2raNs)
+
+[如何使用useNavigate 进行路由的跳转以及传参，并且获取参数。](https://blog.csdn.net/m0_70718568/article/details/127779167)

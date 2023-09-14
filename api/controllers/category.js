@@ -30,7 +30,7 @@ export const addCategories = (req, res) => {
         if (data.length) return res.status(409).json('分類代號: ' + req.body.cat1 + ' 已存在，請重新輸入謝謝!');
 
         const q = 'INSERT INTO blog.po_001 VALUES (?)';
-        const value = [req.body.cat1, req.body.cnam, '', '', '', '', '', now(), now()];
+        const value = [String(req.body.cat1).trim(), String(req.body.cnam).trim(), '', '', '', '', '', now(), now()];
 
         db.query(q, [value], (err, data) => {
             if (err) return res.status(500).send(err);
@@ -77,7 +77,7 @@ export const editCategories = (req, res) => {
             if (err) return res.status(500).json('分類代號: ' + value + ' 不存在，請檢查謝謝!');
 
             const q = 'UPDATE blog.po_001 SET po_001_cnam=?, po_001_updt=? WHERE po_001_cat1=?';
-            const value = [req.body.cnam, now()];
+            const value = [String(req.body.cnam).trim(), now()];
 
             db.query(q, [...value, req.params.id], (err, data) => {
                 if (err) return res.status(500).send(err);

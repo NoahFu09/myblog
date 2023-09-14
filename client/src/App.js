@@ -8,7 +8,7 @@ import Write from './pages/Backend/Write';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import './style.scss';
-import User from './pages/Backend/User';
+import UserPassword from './pages/Backend/UserPassword';
 import NavbarBackend from './components/NavbarBackend';
 import Post from './pages/Backend/Post';
 import Category from './pages/Backend/Category';
@@ -65,8 +65,8 @@ const router = createBrowserRouter([
         element: <LayoutBackend />,
         children: [
             {
-                path: '/manage/user',
-                element: <User />,
+                path: '/manage/userpassword',
+                element: <UserPassword />,
             },
             {
                 path: '/manage/post',
