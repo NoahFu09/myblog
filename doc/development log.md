@@ -18,7 +18,6 @@
   blog.nickfu.tw/img/First-Build-Github-Project-Content-001.png(圖片)
   blog.nickfu.tw/img/login-button-entry.png(圖片)
 
-
 ***部落格的 Domain Name 怎麼定義才好？***
 
 例：blog.nickfu.tw
@@ -29,7 +28,7 @@
  > [The Will Will Web](https://blog.miniasp.com/post/2023/04/27/ASPNET-Core-Data-Protection-Overview)
  > [frannn](https://frannn.dev/posts/27fd8f25/)
 
-## 2023/6/30 
+## 2023/6/30
 
 * React(前端) 怎麼呼叫 Node.js(後端) API ?
   > 透過方法 axios.post("程式路徑","要傳遞的參數")
@@ -57,7 +56,7 @@
 二、同上，只要 api 有錯基本上畫面會直接寫 axios 錯誤，導致以為問題是出在 Router 上，因此建議開發 api 一段一段 return 比較保險。
 三、SQL 好像不管有沒有加符號重音符 ` 都不會怎樣。
 四、原來 input 不用重複寫，可以用 useState 一次加很多屬性。
-五、清空 input 要記得把每個 property 都再賦值一次。 
+五、清空 input 要記得把每個 property 都再賦值一次。
 六、token 就是綜合自己設定的 雜湊值(可能是10)、原參數(可能是帳號)、雜湊密碼(最簡單就是jwtkey) 全部加在一起運算得到的結果。因此除非駭客知道你所有的設定，要不然基本上是不可能破解。
 
 ## 2023/8/8 ~ 2023/8/20
@@ -73,7 +72,7 @@
 三、使用套件 ReactQuill 一直跑版，參考網路 codebox 結果別人是把套件樣式 設定在 index.js。
 四、套件 `ReactQuill` 要有捲軸 必須設定 CSS .ql-editor:overflow-y: scroll
 五、想了很久，文章內嵌照片問題，參考網路 `codebox` 有人使用 `imgbb` 存照片，覺得還不錯暫時先參考此作法，如果之後要換 圖庫server 再想辦法吧。
-六、安裝 sql developer(oracle) 想要用 JDBC 連 mysql，jar 版本不對錯誤，要自己重新下載 https://dev.mysql.com/downloads/connector/j/ ，要自己先查 mysql 版本 `version()`，然後選 `platform independent` 下載 zip檔解壓縮。
+六、安裝 sql developer(oracle) 想要用 JDBC 連 mysql，jar 版本不對錯誤，要自己重新下載 (`https://dev.mysql.com/downloads/connector/j/`) ，要自己先查 mysql 版本 `version()`，然後選 `platform independent` 下載 zip檔解壓縮。
 七、mysql 欄位屬性 utf8mb4 才是真正的utf-8 由四碼編成。
 八、`nodejs` common.js javascript 方法要回傳字串 加 return 就好。
 九、修改 api auth.js 一直報錯，而且報錯就要重啟 Server ，要注意資料庫回傳的欄位名稱如:`data[0].py_001_pass` ，盡量使用 return res.status(200).json('ok'); 逐行排錯。
@@ -85,7 +84,6 @@
 二、完成新增文章功能。
 三、修改 文章 Table。
 
-
 開發遇到問題：
 一、用圖層(z-index)和固定定位(fixed) 做 sidebar。
 二、用 fontawesome 6.x最新版本 照 官網文件操作會有問題， 後來照 5.x 長期支援板就沒問題。
@@ -94,6 +92,10 @@
 五、點選空白處 隱藏 sidebar ， 目前只能在每個 子頁面 render 元素加 onclick 事件。
 六、input type='file' hook onchange 要用 {e => setFile(e.target.files[0])}。
 七、終端機編譯 log 顯示 "start value has mixed support, consider using flex-start instead"，原來是使用 flex 對齊要書寫成 `flex-start`。
+
+## 2023/9/27
+
+一、建立代碼類別檔`cm_006`，使用 `MySQL` `Workbench` 建立組合鍵 `Composite Key` 例：PRIMARY KEY (`CM_006_SYS`, `CM_006_CLNO`)
 
 ## 開發時遇到的錯誤
 
@@ -153,7 +155,7 @@
 
 [寫 React 推薦套件](https://codelove.tw/@tony/post/9aWN3g)
 
-[什麼是 IntelliSense ](https://ithelp.ithome.com.tw/articles/10219794)
+[什麼是 IntelliSense](https://ithelp.ithome.com.tw/articles/10219794)
 
 [為甚麼要用 ` 重音符](https://stackoverflow.com/questions/33679732/difference-if-there-is-any-between-and-in-javascript)
 
