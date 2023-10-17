@@ -13,6 +13,7 @@ import NavbarBackend from './components/NavbarBackend';
 import Post from './pages/Backend/Post';
 import Category from './pages/Backend/Category';
 import CategoryEdit from './pages/Backend/CategoryEdit';
+import SY_001 from './pages/Backend/SY_001';
 
 const Layout = () => {
     return (
@@ -83,6 +84,10 @@ const router = createBrowserRouter([
             {
                 path: '/manage/categoryedit',
                 element: <CategoryEdit />,
+            },
+            {
+                path: '/manage/sy_001',
+                element: <SY_001 />,
             },
         ],
     },

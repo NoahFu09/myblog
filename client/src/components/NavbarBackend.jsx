@@ -46,6 +46,13 @@ const NavbarBackend = () => {
                             &nbsp;&nbsp;密碼更新
                         </Link>
                     </li>
+                    <li>
+                        <Link to="/manage/sy_001">
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <FontAwesomeIcon icon={faCaretRight} />
+                            &nbsp;&nbsp;代碼類別維護
+                        </Link>
+                    </li>
                 </ul>
 
                 <p className="nav-first" onClick={() => navClick('post')}>
