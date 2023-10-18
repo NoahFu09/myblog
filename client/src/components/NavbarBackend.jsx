@@ -27,12 +27,13 @@ const NavbarBackend = () => {
 
     return (
         <div id="navbarBackend" className="navbarBackend">
-            <nav className="st-menu st-move" id="menu-1" ref={menu}>
+            <nav className="st-menu st-move" id="menu-1" ref={menu} onMouseEnter={sidebarclick} onMouseLeave={sidebarclick}>
                 <div className="icon">
                     <h2 className="title" ref={title}>
                         <Link to="/">My Blog</Link>
                     </h2>
-                    <FontAwesomeIcon className="st-button" onClick={sidebarclick} icon={faBars} />
+                    <FontAwesomeIcon className="st-button" icon={faBars} />
+                    {/* <FontAwesomeIcon className="st-button"  onClick={sidebarclick} icon={faBars} /> */}
                 </div>
 
                 <p className="nav-first" onClick={() => navClick('sys')}>
@@ -47,7 +48,7 @@ const NavbarBackend = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/manage/sy_001">
+                        <Link to="/manage/sy001">
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <FontAwesomeIcon icon={faCaretRight} />
                             &nbsp;&nbsp;代碼類別維護

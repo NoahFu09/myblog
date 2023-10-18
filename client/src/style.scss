@@ -679,5 +679,28 @@ $lightBrown: #f1e6dd;
                 }
             }
         }
+
+        //SY_001
+        .sy_001 {
+            .container {
+                margin-top: 75px;
+                width: 100%;
+                h2 {
+                    letter-spacing: 3px;
+                    color: #555;
+                }
+
+                .showdata {
+                    margin-top: 10px;
+                    table,
+                    th,
+                    tr,
+                    td {
+                        border-collapse: collapse;
+                        border: 1px solid #000;
+                    }
+                }
+            }
+        }
     }
 }

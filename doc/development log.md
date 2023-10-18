@@ -93,7 +93,7 @@
 六、input type='file' hook onchange 要用 {e => setFile(e.target.files[0])}。
 七、終端機編譯 log 顯示 "start value has mixed support, consider using flex-start instead"，原來是使用 flex 對齊要書寫成 `flex-start`。
 
-## 2023/9/27
+## 2023/9/27 ~ 2023/10/18
 
 一、建立代碼類別檔`cm_006`，使用 `MySQL` `Workbench` 建立組合鍵 `Composite Key` 例：PRIMARY KEY (`CM_006_SYS`, `CM_006_CLNO`)
 
@@ -172,3 +172,5 @@
 [NodeJs 版本控制符號](https://animpen.com/article/pen/W2raNs)
 
 [如何使用useNavigate 进行路由的跳转以及传参，并且获取参数。](https://blog.csdn.net/m0_70718568/article/details/127779167)
+
+[在React使用hover](https://stackoverflow.com/questions/29981236/how-do-you-hover-in-reactjs-onmouseleave-not-registered-during-fast-hover-ove)
