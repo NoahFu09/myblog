@@ -4,19 +4,19 @@ import { Link } from 'react-router-dom';
 
 const SY001 = () => {
     const [code, setCode] = useState();
-    const [codes, setCodes] = useState();
+    const [codes, setCodes] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.post('/SY_001/code', { code });
+                const res = await axios.post('/sy001/getCodes', { code });
                 setCodes(res.data);
             } catch (err) {
                 console.log(err);
             }
         };
         fetchData();
-    });
+    }, [code]);
 
     return (
         <div className="sy_001">
@@ -42,27 +42,29 @@ const SY001 = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td id="data" align="left" colSpan={1}>
-                                    PO
-                                </td>
-                                <td id="data" align="left" colSpan={1}>
-                                    文章系統
-                                </td>
-                                <td id="data" align="left" colSpan={1}>
-                                    A1
-                                </td>
-                                <td id="data" align="left" colSpan={1}>
-                                    文章分類主項
-                                </td>
-                                <td id="data" align="right">
-                                    3
-                                </td>
-                                <td id="data" align="right">
-                                    40
-                                </td>
-                                <td id="data" align="left"></td>
-                            </tr>
+                            {codes.map((code, i) => (
+                                <tr id={code.CM_006_CLNO}>
+                                    <td id="data" align="left" colSpan={1}>
+                                        {code.CM_006_SYS}
+                                    </td>
+                                    <td id="data" align="left" colSpan={1}>
+                                        文章系統
+                                    </td>
+                                    <td id="data" align="left" colSpan={1}>
+                                        {code.CM_006_CLNO}
+                                    </td>
+                                    <td id="data" align="left" colSpan={1}>
+                                        文章分類主項
+                                    </td>
+                                    <td id="data" align="right">
+                                        {code.CM_006_CDLN}
+                                    </td>
+                                    <td id="data" align="right">
+                                        {code.CM_006_NMLN}
+                                    </td>
+                                    <td id="data" align="left"></td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>

@@ -3,6 +3,7 @@ import authRoutes from './routes/auth.js';
 import userRoutes from './routes/users.js';
 import postRoutes from './routes/posts.js';
 import categoryRoutes from './routes/category.js';
+import sy001Routes from './routes/sy001.js';
 import cookieParser from 'cookie-parser';
 import multer from 'multer';
 const app = express();
@@ -30,6 +31,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/category', categoryRoutes);
+app.use('/api/sy001', sy001Routes);
 
 app.listen(8800, () => {
     console.log('Sever:8800 Connected!');

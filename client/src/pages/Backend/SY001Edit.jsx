@@ -1,6 +1,6 @@
 import React from 'react';
 
-const SY_001_Edit = () => {
+const SY001Edit = () => {
     return (
         <div>
             <h1>SY_001_Edit</h1>
@@ -9,4 +9,4 @@ const SY_001_Edit = () => {
     );
 };
 
-export default SY_001_Edit;
+export default SY001Edit;
