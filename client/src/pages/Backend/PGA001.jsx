@@ -2,14 +2,14 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const SY001 = () => {
+const PGA001 = () => {
     const [code, setCode] = useState();
     const [codes, setCodes] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.post('/sy001/getCodes', { code });
+                const res = await axios.post('/common/getCodes', { code });
                 setCodes(res.data);
             } catch (err) {
                 console.log(err);
@@ -19,21 +19,21 @@ const SY001 = () => {
     }, [code]);
 
     return (
-        <div className="sy_001">
+        <div className="PGA001">
             <div className="container">
                 <div className="title">
-                    <h2>代碼類別維護</h2>
+                    <h2>PGA001 代碼類別維護</h2>
                     <hr />
                 </div>
                 <div className="serach">
                     <input type="text" placeholder="請輸入要查詢的分類代號" onChange={e => setCode(e.target.value)} />
-                    <Link to={'/manage/sy001edit'}>新增</Link>
+                    <Link to={'/manage/pga002'}>新增</Link>
                 </div>
 
                 <div className="showdata">
                     <table>
                         <thead>
-                            <tr>
+                            <tr id="head">
                                 <th colSpan={2}>系統別</th>
                                 <th colSpan={2}>代碼類別</th>
                                 <th>代碼代號長度</th>
@@ -73,4 +73,4 @@ const SY001 = () => {
     );
 };
 
-export default SY001;
+export default PGA001;

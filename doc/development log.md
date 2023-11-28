@@ -95,7 +95,8 @@
 
 ## 2023/9/27 ~ 2023/10/18
 
-一、建立代碼類別檔`cm_006`，使用 `MySQL` `Workbench` 建立組合鍵 `Composite Key` 例：PRIMARY KEY (`CM_006_SYS`, `CM_006_CLNO`)
+一、建立代碼類別檔`CM_006`，使用 `MySQL` `Workbench` 建立組合鍵 `Composite Key` 例：PRIMARY KEY (`CM_006_SYS`, `CM_006_CLNO`)
+二、Windows 修改 C:\ProgramData\MySQL\MySQL Server 5.7\my.ini 參數 `lower_case_table_names=0` 並重啟Mysql，無法解決 `Windows` 下 `Mysql` 表名大寫自動變小寫問題，原因是 Windows 作業系統不區分大小寫。
 
 ## 開發時遇到的錯誤
 

@@ -11,16 +11,14 @@ DROP TABLE `blog`.`cm_006`;
 CREATE TABLE `blog`.`cm_006` (
   `CM_006_SYS`  VARCHAR(2)      NOT NULL,
   --                                      系統別
-  `CM_006_CLNO` VARCHAR(2)      NOT NULL,
+  `CM_006_CLNO` VARCHAR(4)      NOT NULL,
   --                                      代碼類別代號
-  `CM_006_CLNM` VARCHAR(60)     NOT NULL,
+  `CM_006_CLNM` VARCHAR(40)     NOT NULL,
   --                                      代碼類別說明
   `CM_006_CDLN` DECIMAL(1,0)    NOT NULL,
   --                                      代碼代號長度 ( MAX LENGTH = 6)
   `CM_006_NMLN` DECIMAL(2,0)    NOT NULL,
   --                                      代碼說明長度 ( MAX LENGTH = 40 )
-  `CM_006_SPCL` VARCHAR(1)      NOT NULL,
-  --                                      特殊處理 (:# )
   `CM_006_CTDT` DATE            NULL,
   --                                      建檔日期
   `CM_006_CTTM` TIME            NULL,
@@ -35,5 +33,5 @@ CREATE TABLE `blog`.`cm_006` (
   --                                      異動者
   PRIMARY KEY (`CM_006_SYS`, `CM_006_CLNO`))
 ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
+DEFAULT CHARACTER SET = utf8mb4
 COMMENT = '代碼類別檔';

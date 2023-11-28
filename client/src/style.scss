@@ -680,24 +680,65 @@ $lightBrown: #f1e6dd;
             }
         }
 
-        //SY_001
-        .sy_001 {
+        //PGA001
+        .PGA001 {
+            margin-top: 75px;
             .container {
-                margin-top: 75px;
                 width: 100%;
                 h2 {
                     letter-spacing: 3px;
                     color: #555;
                 }
+                .serach {
+                    margin-top: 10px;
+                    display: flex;
+                    gap: 5px;
+
+                    input {
+                        padding: 8px;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        font-size: 16px;
+                        outline-color: #3182ce;
+                    }
+
+                    a {
+                        text-decoration: none;
+                        color: #000;
+                        background-color: #eee;
+                        border: 1px solid #777;
+                        padding: 5px;
+                        border-radius: 2px;
+                        margin: auto 0;
+                        &:hover {
+                            background-color: #ddd;
+                        }
+                    }
+                }
 
                 .showdata {
-                    margin-top: 10px;
+                    margin-top: 15px;
+
                     table,
                     th,
                     tr,
                     td {
+                        border: 1px solid #333;
                         border-collapse: collapse;
-                        border: 1px solid #000;
+                        padding: 5px;
+                    }
+                }
+
+                .cat {
+                    //even 表示雙數 odd表示基數
+                    &:nth-child(even) {
+                        background-color: #eee;
+                    }
+
+                    &:hover {
+                        background-color: #0080ff;
+                        color: #fff;
+                        cursor: pointer;
                     }
                 }
             }

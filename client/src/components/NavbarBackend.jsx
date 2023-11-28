@@ -48,7 +48,7 @@ const NavbarBackend = () => {
                         </Link>
                     </li>
                     <li>
-                        <Link to="/manage/sy001">
+                        <Link to="/manage/pga001">
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <FontAwesomeIcon icon={faCaretRight} />
                             &nbsp;&nbsp;代碼類別維護

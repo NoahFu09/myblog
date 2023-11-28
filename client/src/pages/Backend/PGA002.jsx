@@ -1,12 +1,12 @@
 import React from 'react';
 
-const SY001Edit = () => {
+const PGA002 = () => {
     return (
         <div>
-            <h1>SY_001_Edit</h1>
+            <h1>PGA002</h1>
             <hr></hr>
         </div>
     );
 };
 
-export default SY001Edit;
+export default PGA002;

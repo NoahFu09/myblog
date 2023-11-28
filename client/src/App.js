@@ -13,8 +13,8 @@ import NavbarBackend from './components/NavbarBackend';
 import Post from './pages/Backend/Post';
 import Category from './pages/Backend/Category';
 import CategoryEdit from './pages/Backend/CategoryEdit';
-import SY001 from './pages/Backend/SY001';
-import SY001Edit from './pages/Backend/SY001Edit';
+import PGA001 from './pages/Backend/PGA001';
+import PGA002 from './pages/Backend/PGA002';
 
 const Layout = () => {
     return (
@@ -87,12 +87,12 @@ const router = createBrowserRouter([
                 element: <CategoryEdit />,
             },
             {
-                path: '/manage/sy001',
-                element: <SY001 />,
+                path: '/manage/pga001',
+                element: <PGA001 />,
             },
             {
-                path: '/manage/sy001edit',
-                element: <SY001Edit />,
+                path: '/manage/pga002',
+                element: <PGA002 />,
             },
         ],
     },
