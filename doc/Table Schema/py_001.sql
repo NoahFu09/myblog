@@ -1,40 +1,47 @@
---------------------------
---資料表：py_001
---------------------------
---資料表中文：人員主檔
---------------------------
-DROP TABLE blog.py_001;
+--+------------+-------------------------------------------------------------+
+--|SYSTEM CODE | CH                                          DATE:27/09/2023 |
+--|SYSTEM NAME | 公用系統                                      AUTHOR:NickFu |
+--+------------+-------------------------------------------------------------+
+--|TABLE       | PY_001                                                      |
+--|DESCRIPTION | 人員主檔                                                    |
+--+------------+-------------------------------------------------------------+
 
-CREATE TABLE blog.py_001 (
-  py_001_usid NVARCHAR(20)   NOT NULL,
-	  -- 人員編號
-  /*----------------------------------------*/
-  py_001_unme NVARCHAR(50)   NOT NULL,
-    -- 人員暱稱
-  py_001_pass NVARCHAR(255)  NOT NULL,
-    -- 人員密碼
-  py_001_mail NVARCHAR(255)  NOT NULL,
-    -- 人員信箱
-  py_001_imge NVARCHAR(255)  NOT NULL,
-    -- 人員縮圖
-  /*----------------------------------------*/
-  py_001_cha1 NVARCHAR(255)  NOT NULL,
-    -- 文字預留一
-  py_001_cha2 NVARCHAR(255)  NOT NULL,
-    -- 文字預留二
-  py_001_cha3 NVARCHAR(255)  NOT NULL,
-    -- 文字預留三
-  py_001_cha4 NVARCHAR(255)  NOT NULL,
-    -- 文字預留四
-  py_001_cha5 NVARCHAR(255)  NOT NULL,
-    -- 文字預留五
-  /*----------------------------------------*/
-  py_001_ctdt DATETIME 		   NOT NULL,
-    -- 建立日期
-  py_001_ctno NVARCHAR(40)   NOT NULL,
-    -- 建立人員
-  py_001_updt DATETIME 		   NOT NULL,
-    -- 更新日期
-  py_001_upno NVARCHAR(40)   NOT NULL,
-    -- 更新人員
-  UNIQUE INDEX py_001_usid_UNIQUE (py_001_usid ASC));
+DROP TABLE `blog`.`py_001`;
+
+CREATE TABLE `blog`.`py_001` (
+  `PY_001_USID` VARCHAR(20)   NOT NULL,
+   --                                      人員編號
+  /*-----------------------------------------------------*/
+  `PY_001_NAME` VARCHAR(50)   NOT NULL,
+   --                                      人員姓名
+  `PY_001_PASS` VARCHAR(255)  NOT NULL,
+   --                                      人員密碼
+  `PY_001_MAIL` VARCHAR(255)  NOT NULL,
+   --                                      人員信箱
+  `PY_001_IMGE` VARCHAR(255)  NULL,
+   --                                      人員縮圖
+  /*-----------------------------------------------------*/
+  `PY_001_CHA1` VARCHAR(255)  NOT NULL,
+   --                                      文字預留一
+  `PY_001_CHA2` VARCHAR(255)  NOT NULL,
+   --                                      文字預留二
+  `PY_001_CHA3` VARCHAR(255)  NOT NULL,
+   --                                      文字預留三
+  /*-----------------------------------------------------*/
+  `PY_001_CTDT` DATE          NOT NULL,
+   --                                      建立日期
+  `PY_001_CTTM` TIME          NOT NULL,
+   --                                      建立時間
+  `PY_001_CTUR` VARCHAR(20)   NOT NULL,
+   --                                      建立者
+  `PY_001_UPDT` DATE          NOT NULL,
+   --                                      異動日期
+  `PY_001_UPTM` TIME          NOT NULL,
+   --                                      異動時間
+  `PY_001_UPUR` VARCHAR(20)   NOT NULL,
+   --                                      異動者
+  UNIQUE INDEX `PY_001_USID_UNIQUE` (`PY_001_USID` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_unicode_ci
+COMMENT = '人員主檔';

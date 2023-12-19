@@ -9,12 +9,12 @@ export const updateUser = (req, res) => {
     jwt.verify(token, 'jwtkey', (err, userInfo) => {
         if (err) return res.status(403).json('token is not valid!');
 
-        const q = 'SELECT * FROM py_001 WHERE py_001_usid=? ';
+        const q = 'SELECT * FROM py_001 WHERE PY_001_USID=? ';
 
         db.query(q, req.body.userid, (err, data) => {
             if (err) return res.json(err);
             //CHECK password
-            const isPasswordCorrect = bcrypt.compareSync(req.body.oldpassword, data[0].py_001_pass);
+            const isPasswordCorrect = bcrypt.compareSync(req.body.oldpassword, data[0].PY_001_PASS);
 
             if (!isPasswordCorrect) return res.status(400).json('舊密碼輸入不正確，請重新輸入!');
 
@@ -26,7 +26,7 @@ export const updateUser = (req, res) => {
             const salt = bcrypt.genSaltSync(10);
             const hash = bcrypt.hashSync(req.body.password, salt);
 
-            const q = 'UPDATE py_001 SET py_001_pass=? WHERE py_001_usid=?';
+            const q = 'UPDATE py_001 SET PY_001_PASS=? WHERE PY_001_USID=?';
 
             db.query(q, [hash, req.body.userid], (err, data) => {
                 if (err) return res.json(err);

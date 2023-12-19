@@ -8,7 +8,7 @@ const UserPassword = () => {
     const [res, setRespone] = useState();
 
     const [inputs, setInputs] = useState({
-        userid: currentUser?.py_001_usid,
+        userid: currentUser?.PY_001_USID,
         // username: '',
         oldpassword: '',
         password: '',
@@ -32,10 +32,10 @@ const UserPassword = () => {
             //submit成功，重新設定預設值，記得html元素要有value 屬性才吃的到
             //而且如果這邊預設值只給 oldpassword、password、checkpassword
             //再下一次 submit 會沒有 username property
-            setInputs({ userid: currentUser?.py_001_usid, oldpassword: '', password: '', checkpassword: '' });
+            setInputs({ userid: currentUser?.PY_001_USID, oldpassword: '', password: '', checkpassword: '' });
         } catch (err) {
             setRespone(err.response.data);
-            setInputs({ userid: currentUser?.py_001_usid, oldpassword: '', password: '', checkpassword: '' });
+            setInputs({ userid: currentUser?.PY_001_USID, oldpassword: '', password: '', checkpassword: '' });
         }
     };
 
@@ -51,9 +51,9 @@ const UserPassword = () => {
         >
             <h2>密碼更新</h2>
             <hr />
-            <input type="text" placeholder="帳號" disabled="disabled" name="userid" defaultValue={currentUser?.py_001_usid} onChange={handleChange} />
+            <input type="text" placeholder="帳號" disabled="disabled" name="userid" defaultValue={currentUser?.PY_001_USID} onChange={handleChange} />
 
-            <input type="text" placeholder="電子信箱" disabled="disabled" name="email" defaultValue={currentUser?.py_001_mail} />
+            <input type="text" placeholder="電子信箱" disabled="disabled" name="email" defaultValue={currentUser?.PY_001_MAIL} />
 
             <input type="password" placeholder="舊密碼" name="oldpassword" value={inputs.oldpassword} onChange={handleChange} />
 

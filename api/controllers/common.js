@@ -33,3 +33,35 @@ export const now = () => {
     let current = year + '-' + month + '-' + date + ' ' + hours + '-' + minutes + '-' + seconds;
     return current;
 };
+
+export const date = () => {
+    let date_ob = new Date();
+
+    //current date
+    let date = ('0' + date_ob.getDate()).slice(-2);
+
+    //current month
+    let month = ('0' + (date_ob.getMonth() + 1)).slice(-2);
+
+    //current year
+    let year = date_ob.getFullYear();
+
+    let current = year + '-' + month + '-' + date;
+    return current;
+};
+
+export const time = () => {
+    let date_ob = new Date();
+
+    //current hours
+    let hours = date_ob.getHours();
+
+    //current minutes
+    let minutes = date_ob.getMinutes();
+
+    //current seconds
+    let seconds = date_ob.getSeconds();
+
+    let current = hours + ':' + minutes + ':' + seconds;
+    return current;
+};
