@@ -743,5 +743,41 @@ $lightBrown: #f1e6dd;
                 }
             }
         }
+
+        //PGA002
+        .PGA002 {
+            margin-top: 75px;
+            .container {
+                width: 100%;
+                h2 {
+                    color: #c01717;
+                    letter-spacing: 1.5px;
+                }
+                .showdata {
+                    margin-top: 20px;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 5px;
+                    input {
+                        padding: 8px;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        font-size: 16px;
+                        outline-color: #3182ce;
+                    }
+
+                    select {
+                        padding: 8px;
+                        border-radius: 5px;
+                        font-size: 16px;
+                        outline-color: #3182ce;
+                    }
+
+                    .submit {
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
     }
 }

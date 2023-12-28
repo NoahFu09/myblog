@@ -22,7 +22,7 @@ const PGA001 = () => {
         <div className="PGA001">
             <div className="container">
                 <div className="title">
-                    <h2>PGA001 代碼類別維護</h2>
+                    <h2>(PGA001) 代碼類別維護</h2>
                     <hr />
                 </div>
                 <div className="serach">
@@ -43,7 +43,7 @@ const PGA001 = () => {
                         </thead>
                         <tbody>
                             {codes.map((code, i) => (
-                                <tr id={code.CM_006_CLNO}>
+                                <tr key={i} id={code.CM_006_CLNO}>
                                     <td id="data" align="left" colSpan={1}>
                                         {code.CM_006_SYS}
                                     </td>

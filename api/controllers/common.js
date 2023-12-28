@@ -1,4 +1,5 @@
 import { db } from '../db.js';
+import jwt from 'jsonwebtoken';
 
 export const getCodes = (req, res) => {
     const q = req.body.code ? 'SELECT * FROM blog.cm_006 WHERE CM_006_CLNO=?' : 'SELECT * FROM blog.cm_006';
@@ -6,6 +7,52 @@ export const getCodes = (req, res) => {
         if (err) return res.status(500).send(err);
 
         return res.status(200).json(data);
+    });
+};
+
+export const getSystem = (req, res) => {
+    const q = 'SELECT CM_011_SYSM,CM_011_SNAM FROM CM_011';
+    db.query(q, null, (err, data) => {
+        if (err) return res.status(500).send(err);
+
+        return res.status(200).json(data);
+    });
+};
+
+export const insCM006 = (req, res) => {
+    const token = req.cookies.access_token;
+    if (!token) return res.status(401).json('Not authenticated!');
+
+    jwt.verify(token, 'jwtkey', (err, userInfo) => {
+        if (err) return res.status(403).json('token is not valid!');
+
+        const q = 'SELECT * FROM cm_006 WHERE CM_006_SYS=? AND CM_006_CLNO=?';
+
+        db.query(q, [req.body.sys, req.body.clno], (err, data) => {
+            if (err) return res.json(err);
+            if (data.length) return res.status(409).json('此代碼已存在，請嘗試其它名稱!');
+
+            const q = 'INSERT INTO cm_006 VALUES (?)';
+            const value = [
+                req.body.sys,
+                req.body.clno,
+                req.body.clnm,
+                req.body.cdln,
+                req.body.nmln,
+                date(),
+                time(),
+                'admin',
+                date(),
+                time(),
+                'admin',
+            ];
+
+            db.query(q, [value], (err, data) => {
+                if (err) return res.json(err);
+
+                return res.status(200).json('更新成功!');
+            });
+        });
     });
 };
 
