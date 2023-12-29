@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const PGA002 = () => {
     const [res, setRespone] = useState();
@@ -34,6 +35,7 @@ const PGA002 = () => {
         try {
             const res = await axios.post(`/common/insCM006`, inputs);
             setRespone(res.data);
+            setInputs({ sys: 'CM', clno: '', clnm: '', cdln: '', nmln: '' });
         } catch (err) {
             setRespone(err.response.data);
         }
@@ -54,7 +56,7 @@ const PGA002 = () => {
                 <hr />
 
                 <div className="showdata">
-                    <select name="sys" id="sys" onChange={handleChange}>
+                    <select name="sys" id="sys" value={inputs.sys} onChange={handleChange}>
                         {system.map((sys, i) => (
                             <option key={i} id={'sys_' + sys.CM_011_SYSM} value={sys.CM_011_SYSM}>
                                 {sys.CM_011_SYSM + ' ' + sys.CM_011_SNAM}
@@ -62,18 +64,22 @@ const PGA002 = () => {
                         ))}
                     </select>
 
-                    <input type="text" placeholder="代碼類別代號" name="clno" onChange={handleChange} />
+                    <input type="text" placeholder="代碼類別代號 (例:A1, 11" value={inputs.clno} name="clno" onChange={handleChange} />
 
-                    <input type="text" placeholder="代碼類別說明" name="clnm" onChange={handleChange} />
+                    <input type="text" placeholder="代碼類別說明 (例:文章分類第一層" value={inputs.clnm} name="clnm" onChange={handleChange} />
 
-                    <input type="text" placeholder="代碼代號長度" name="cdln" onChange={handleChange} />
+                    <input type="text" placeholder="代碼代號長度 (例:2, 4" value={inputs.cdln} name="cdln" onChange={handleChange} />
 
-                    <input type="text" placeholder="代碼說明長度" name="nmln" onChange={handleChange} />
+                    <input type="text" placeholder="代碼說明長度 (例:20, 40" value={inputs.nmln} name="nmln" onChange={handleChange} />
 
                     {res && <p className="respone">{res}</p>}
-                    <input type="button" id="btn_OKY" className="submit" value="存檔" onClick={handleSubmit} />
+                </div>
 
-                    <input type="button" id="btn_NGN" className="submit" value="離開" onClick={handleSubmit} />
+                <div className="btn">
+                    <input type="button" id="btn_OKY" className="btn_OKY" value="存檔" onClick={handleSubmit} />
+                    <div className="btn_NGN">
+                        <Link to={'/manage/pga001'}>離開</Link>
+                    </div>
                 </div>
             </div>
         </div>

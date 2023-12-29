@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const PGA001 = () => {
+    const navigate = useNavigate();
     const [code, setCode] = useState();
     const [codes, setCodes] = useState([]);
 
@@ -26,7 +27,7 @@ const PGA001 = () => {
                     <hr />
                 </div>
                 <div className="serach">
-                    <input type="text" placeholder="請輸入要查詢的分類代號" onChange={e => setCode(e.target.value)} />
+                    <input type="text" placeholder="請輸入要查詢的系統別" onChange={e => setCode(e.target.value)} />
                     <Link to={'/manage/pga002'}>新增</Link>
                 </div>
 
@@ -38,23 +39,29 @@ const PGA001 = () => {
                                 <th colSpan={2}>代碼類別</th>
                                 <th>代碼代號長度</th>
                                 <th>備註長度</th>
-                                <th>特殊處理</th>
                             </tr>
                         </thead>
                         <tbody>
                             {codes.map((code, i) => (
-                                <tr key={i} id={code.CM_006_CLNO}>
+                                <tr
+                                    key={i}
+                                    id={code.CM_006_CLNO}
+                                    className="code"
+                                    onClick={() => {
+                                        navigate('/manage/PGA002');
+                                    }}
+                                >
                                     <td id="data" align="left" colSpan={1}>
                                         {code.CM_006_SYS}
                                     </td>
                                     <td id="data" align="left" colSpan={1}>
-                                        文章系統
+                                        {code.CM_011_SNAM}
                                     </td>
                                     <td id="data" align="left" colSpan={1}>
                                         {code.CM_006_CLNO}
                                     </td>
                                     <td id="data" align="left" colSpan={1}>
-                                        文章分類主項
+                                        {code.CM_006_CLNM}
                                     </td>
                                     <td id="data" align="right">
                                         {code.CM_006_CDLN}
@@ -62,7 +69,6 @@ const PGA001 = () => {
                                     <td id="data" align="right">
                                         {code.CM_006_NMLN}
                                     </td>
-                                    <td id="data" align="left"></td>
                                 </tr>
                             ))}
                         </tbody>

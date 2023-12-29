@@ -2,7 +2,9 @@ import { db } from '../db.js';
 import jwt from 'jsonwebtoken';
 
 export const getCodes = (req, res) => {
-    const q = req.body.code ? 'SELECT * FROM blog.cm_006 WHERE CM_006_CLNO=?' : 'SELECT * FROM blog.cm_006';
+    const q = req.body.code
+        ? 'SELECT T1.CM_006_SYS, T2.CM_011_SNAM, T1.CM_006_CLNO, T1.CM_006_CLNM, T1.CM_006_CDLN, T1.CM_006_NMLN FROM cm_006 T1, cm_011 T2 WHERE T1.CM_006_SYS=T2.CM_011_SYSM AND T1.CM_006_SYS=?'
+        : 'SELECT T1.CM_006_SYS, T2.CM_011_SNAM, T1.CM_006_CLNO, T1.CM_006_CLNM, T1.CM_006_CDLN, T1.CM_006_NMLN FROM cm_006 T1, cm_011 T2 WHERE T1.CM_006_SYS=T2.CM_011_SYSM';
     db.query(q, [req.body.code], (err, data) => {
         if (err) return res.status(500).send(err);
 
