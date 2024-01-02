@@ -122,14 +122,14 @@ yarn add multer
 
 ## 安裝 輸入框 tag 套件
 
-~~~bash
+```bash
 yarn add react-tag-input-component
-~~~
+```
 
 ## 安裝 fontawesome
 
 [官方鏈結](https://fontawesome.com/docs/web/use-with/react/add-icons)
 
-~~~bash
+```bash
 npm install react-icons --save
-~~~
+```

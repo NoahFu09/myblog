@@ -66,9 +66,9 @@ export const updateCM006 = (req, res) => {
         if (err) return res.status(401).json('授權未經過許可!');
 
         const q = 'SELECT * FROM blog.cm_006 WHERE CM_006_SYS=? AND CM_006_CLNO=?';
-        const value = [req.body.sys, req.body.clno];
+        const values = [req.body.sys, req.body.clno];
 
-        db.query(q, [...value], (err, data) => {
+        db.query(q, [...values], (err, data) => {
             if (err) return res.json(err);
             if (!data.length) return res.status(409).json('代碼類別: ' + req.body.sys + ' / ' + req.body.clno + ' 不存在，請檢查謝謝!');
 
