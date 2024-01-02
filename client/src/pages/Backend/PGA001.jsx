@@ -34,7 +34,7 @@ const PGA001 = () => {
                 <div className="showdata">
                     <table>
                         <thead>
-                            <tr id="head">
+                            <tr id="header" className="header">
                                 <th colSpan={2}>系統別</th>
                                 <th colSpan={2}>代碼類別</th>
                                 <th>代碼代號長度</th>
@@ -48,7 +48,7 @@ const PGA001 = () => {
                                     id={code.CM_006_CLNO}
                                     className="code"
                                     onClick={() => {
-                                        navigate('/manage/PGA002');
+                                        navigate('/manage/PGA002', { state: codes[i] });
                                     }}
                                 >
                                     <td id="data" align="left" colSpan={1}>

@@ -21,7 +21,7 @@ export const getSystem = (req, res) => {
     });
 };
 
-export const insCM006 = (req, res) => {
+export const insertCM006 = (req, res) => {
     const token = req.cookies.access_token;
     if (!token) return res.status(401).json('Not authenticated!');
 
@@ -32,7 +32,7 @@ export const insCM006 = (req, res) => {
 
         db.query(q, [req.body.sys, req.body.clno], (err, data) => {
             if (err) return res.json(err);
-            if (data.length) return res.status(409).json('此代碼已存在，請嘗試其它名稱!');
+            if (data.length) return res.status(409).json('代碼已存在，請嘗試其它代碼!');
 
             const q = 'INSERT INTO cm_006 VALUES (?)';
             const value = [
@@ -54,6 +54,55 @@ export const insCM006 = (req, res) => {
 
                 return res.status(200).json('更新成功!');
             });
+        });
+    });
+};
+
+export const updateCM006 = (req, res) => {
+    const token = req.cookies.access_token;
+    if (!token) return res.status(401).json('沒有經過授權!');
+
+    jwt.verify(token, 'jwtkey', (err, userInfo) => {
+        if (err) return res.status(401).json('授權未經過許可!');
+
+        const q = 'SELECT * FROM blog.cm_006 WHERE CM_006_SYS=? AND CM_006_CLNO=?';
+        const value = [req.body.sys, req.body.clno];
+
+        db.query(q, [...value], (err, data) => {
+            if (err) return res.json(err);
+            if (!data.length) return res.status(409).json('代碼類別: ' + req.body.sys + ' / ' + req.body.clno + ' 不存在，請檢查謝謝!');
+
+            const q =
+                'UPDATE blog.cm_006 SET CM_006_CLNM=?,CM_006_CDLN=?,CM_006_NMLN=?, CM_006_UPDT=? ,CM_006_UPTM=? WHERE CM_006_SYS=? AND CM_006_CLNO=?';
+            const values = [req.body.clnm, req.body.cdln, req.body.nmln, date(), time(), req.body.sys, req.body.clno];
+
+            db.query(q, [...values], (err, data) => {
+                if (err) return res.status(500).send(err);
+                return res.status(200).json('更新成功!');
+            });
+        });
+    });
+};
+
+export const deleteCM006 = (req, res) => {
+    const token = req.cookies.access_token;
+    if (!token) return res.status(401).json('未經過授權!');
+
+    jwt.verify(token, 'jwtkey', (err, userInfo) => {
+        if (err) return res.status(401).json('授權未經過許可!');
+    });
+    const q = 'SELECT * FROM cm_006 WHERE CM_006_SYS=? AND CM_006_CLNO=?';
+    const value = [req.body.sys, req.body.clno];
+
+    db.query(q, [...value], (err, data) => {
+        if (err) return res.status(500).send(err);
+        if (!data.length) return res.status(409).json('代碼類別: ' + req.body.sys + ' / ' + req.body.clno + ' 不存在，請檢查謝謝!');
+
+        const q = 'DELETE FROM cm_006 WHERE CM_006_SYS=? AND CM_006_CLNO=?';
+
+        db.query(q, [...value], (err, data) => {
+            if (err) return res.status(500).send(err);
+            return res.status(200).json('刪除成功!');
         });
     });
 };

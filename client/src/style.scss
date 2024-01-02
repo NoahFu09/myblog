@@ -791,7 +791,8 @@ $lightBrown: #f1e6dd;
                     margin-top: 5px;
                     display: flex;
                     gap: 5px;
-                    .btn_OKY {
+                    .btn_OKY,
+                    .btn_DEL {
                         cursor: pointer;
                         width: 62px;
                         height: 42px;
@@ -814,10 +815,8 @@ $lightBrown: #f1e6dd;
                         padding: 5px;
                         text-align: center;
                         line-height: 30px;
-                        a {
-                            text-decoration: none;
-                            color: #000;
-                        }
+                        text-decoration: none;
+                        color: #000;
                         &:hover {
                             background-color: lightgray;
                             border: 1px solid #bbb;
