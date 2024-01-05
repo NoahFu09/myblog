@@ -21,6 +21,15 @@ export const getSystem = (req, res) => {
     });
 };
 
+export const getClno = (req, res) => {
+    const q = 'SELECT CM_006_CLNO, CM_006_CLNM FROM CM_006 WHERE CM_006_SYS=?';
+    db.query(q, [req.params.id], (err, data) => {
+        if (err) return res.status(500).send(err);
+
+        return res.status(200).json(data);
+    });
+};
+
 export const insertCM006 = (req, res) => {
     const token = req.cookies.access_token;
     if (!token) return res.status(401).json('Not authenticated!');
@@ -104,6 +113,17 @@ export const deleteCM006 = (req, res) => {
             if (err) return res.status(500).send(err);
             return res.status(200).json('刪除成功!');
         });
+    });
+};
+
+export const getCM007 = (req, res) => {
+    const q = req.body.code
+        ? 'SELECT T1.CM_006_SYS, T2.CM_011_SNAM, T1.CM_006_CLNO, T1.CM_006_CLNM, T1.CM_006_CDLN, T1.CM_006_NMLN FROM cm_006 T1, cm_011 T2 WHERE T1.CM_006_SYS=T2.CM_011_SYSM AND T1.CM_006_SYS=?'
+        : 'SELECT T1.CM_006_SYS, T2.CM_011_SNAM, T1.CM_006_CLNO, T1.CM_006_CLNM, T1.CM_006_CDLN, T1.CM_006_NMLN FROM cm_006 T1, cm_011 T2 WHERE T1.CM_006_SYS=T2.CM_011_SYSM';
+    db.query(q, [req.body.code], (err, data) => {
+        if (err) return res.status(500).send(err);
+
+        return res.status(200).json(data);
     });
 };
 
