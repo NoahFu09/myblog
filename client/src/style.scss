@@ -694,25 +694,62 @@ $lightBrown: #f1e6dd;
                     margin-top: 20px;
                     display: flex;
                     gap: 5px;
+                    align-items: center;
 
-                    input {
+                    .sel_sys {
                         padding: 8px;
-                        border: 1px solid #ccc;
                         border-radius: 5px;
                         font-size: 16px;
                         outline-color: #3182ce;
                     }
 
-                    a {
+                    .inp_clno,
+                    .inp_cdno {
+                        padding: 8px;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        font-size: 16px;
+                        outline-color: #3182ce;
+                        width: 40px;
+                    }
+
+                    .sel_clno {
+                        padding: 8px;
+                        border: 1px solid #ccc;
+                        border-radius: 5px;
+                        font-size: 16px;
+                        outline-color: #3182ce;
+                        width: auto;
+                    }
+
+                    .btn_SEL {
+                        cursor: pointer;
+                        width: 62px;
+                        height: 42px;
+                        padding: 0;
+                        margin: 0;
+                        border: 1px solid #ccc;
+                        border-radius: 0;
+                        font-size: 16px;
+                        &:hover {
+                            background-color: lightgray;
+                            border: 1px solid #bbb;
+                        }
+                    }
+
+                    .btn_ADD {
+                        width: 50px;
+                        height: 30px;
+                        border: 1px solid #ccc;
+                        background-color: #f0f0f0;
+                        padding: 5px;
+                        text-align: center;
+                        line-height: 30px;
                         text-decoration: none;
                         color: #000;
-                        background-color: #eee;
-                        border: 1px solid #777;
-                        padding: 5px;
-                        border-radius: 2px;
-                        margin: auto 0;
                         &:hover {
-                            background-color: #ddd;
+                            background-color: lightgray;
+                            border: 1px solid #bbb;
                         }
                     }
                 }

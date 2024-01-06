@@ -1,11 +1,11 @@
 import { db } from '../db.js';
 import jwt from 'jsonwebtoken';
 
-export const getCodes = (req, res) => {
-    const q = req.body.code
-        ? 'SELECT T1.CM_006_SYS, T2.CM_011_SNAM, T1.CM_006_CLNO, T1.CM_006_CLNM, T1.CM_006_CDLN, T1.CM_006_NMLN FROM cm_006 T1, cm_011 T2 WHERE T1.CM_006_SYS=T2.CM_011_SYSM AND T1.CM_006_SYS=?'
-        : 'SELECT T1.CM_006_SYS, T2.CM_011_SNAM, T1.CM_006_CLNO, T1.CM_006_CLNM, T1.CM_006_CDLN, T1.CM_006_NMLN FROM cm_006 T1, cm_011 T2 WHERE T1.CM_006_SYS=T2.CM_011_SYSM';
-    db.query(q, [req.body.code], (err, data) => {
+export const getCM006 = (req, res) => {
+    const q = req.body.clno
+        ? 'SELECT T1.CM_006_SYS, T2.CM_011_SNAM, T1.CM_006_CLNO, T1.CM_006_CLNM, T1.CM_006_CDLN, T1.CM_006_NMLN FROM cm_006 T1, cm_011 T2 WHERE T1.CM_006_SYS=T2.CM_011_SYSM AND T1.CM_006_SYS=? AND T1.CM_006_CLNO=?'
+        : 'SELECT T1.CM_006_SYS, T2.CM_011_SNAM, T1.CM_006_CLNO, T1.CM_006_CLNM, T1.CM_006_CDLN, T1.CM_006_NMLN FROM cm_006 T1, cm_011 T2 WHERE T1.CM_006_SYS=T2.CM_011_SYSM AND T1.CM_006_SYS=?';
+    db.query(q, [req.body.system, req.body.clno], (err, data) => {
         if (err) return res.status(500).send(err);
 
         return res.status(200).json(data);
@@ -117,10 +117,10 @@ export const deleteCM006 = (req, res) => {
 };
 
 export const getCM007 = (req, res) => {
-    const q = req.body.code
-        ? 'SELECT T1.CM_006_SYS, T2.CM_011_SNAM, T1.CM_006_CLNO, T1.CM_006_CLNM, T1.CM_006_CDLN, T1.CM_006_NMLN FROM cm_006 T1, cm_011 T2 WHERE T1.CM_006_SYS=T2.CM_011_SYSM AND T1.CM_006_SYS=?'
-        : 'SELECT T1.CM_006_SYS, T2.CM_011_SNAM, T1.CM_006_CLNO, T1.CM_006_CLNM, T1.CM_006_CDLN, T1.CM_006_NMLN FROM cm_006 T1, cm_011 T2 WHERE T1.CM_006_SYS=T2.CM_011_SYSM';
-    db.query(q, [req.body.code], (err, data) => {
+    const q = req.body.cdno
+        ? 'SELECT T1.CM_007_SYS, T3.CM_011_SNAM, T1.CM_007_CLNO, T2.CM_006_CLNM, T1.CM_007_CDNO, T1.CM_007_CDNM,T1.CM_007_CDPS, T1.CM_007_CDP1, T1.CM_007_CDP2 FROM cm_007 T1, cm_006 T2, cm_011 T3 WHERE T1.CM_007_SYS=T2.CM_006_SYS AND T1.CM_007_CLNO=T2.CM_006_CLNO AND T1.CM_007_SYS=T3.CM_011_SYSM AND T1.CM_007_SYS=? AND T1.CM_007_CLNO=? AND T1.CM_007_CDNO=?'
+        : 'SELECT T1.CM_007_SYS, T3.CM_011_SNAM, T1.CM_007_CLNO, T2.CM_006_CLNM, T1.CM_007_CDNO, T1.CM_007_CDNM,T1.CM_007_CDPS, T1.CM_007_CDP1, T1.CM_007_CDP2 FROM cm_007 T1, cm_006 T2, cm_011 T3 WHERE T1.CM_007_SYS=T2.CM_006_SYS AND T1.CM_007_CLNO=T2.CM_006_CLNO AND T1.CM_007_SYS=T3.CM_011_SYSM AND T1.CM_007_SYS=? AND T1.CM_007_CLNO=?';
+    db.query(q, [req.body.system, req.body.clno, req.body.cdno], (err, data) => {
         if (err) return res.status(500).send(err);
 
         return res.status(200).json(data);

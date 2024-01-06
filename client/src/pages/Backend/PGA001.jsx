@@ -4,20 +4,34 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const PGA001 = () => {
     const navigate = useNavigate();
-    const [code, setCode] = useState();
-    const [codes, setCodes] = useState([]);
+    const [defaultSystem, setDefaultSystem] = useState([]);
+
+    const [system, setSystem] = useState('CM');
+    const [clno, setClno] = useState();
+    const [showData, setShowData] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.post('/common/getCodes', { code });
-                setCodes(res.data);
+                //系統別下拉
+                const resDefaultSystem = await axios.get(`/common/getSystem`);
+                setDefaultSystem(resDefaultSystem.data);
             } catch (err) {
                 console.log(err);
             }
         };
         fetchData();
-    }, [code]);
+    }, [system, clno]);
+
+    const handleClick = async e => {
+        e.preventDefault();
+        try {
+            const res = await axios.post('/common/getCM006', { system, clno });
+            setShowData(res.data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     return (
         <div className="PGA001">
@@ -27,8 +41,20 @@ const PGA001 = () => {
                     <hr />
                 </div>
                 <div className="serach">
-                    <input type="text" placeholder="請輸入要查詢的系統別" onChange={e => setCode(e.target.value)} />
-                    <Link to={'/manage/pga002'}>新增</Link>
+                    <span>系統:</span>
+                    <select name="sys" className="sel_sys" onChange={e => setSystem(e.target.value)}>
+                        {defaultSystem.map((sys, i) => (
+                            <option key={i} id={'sys_' + sys.CM_011_SYSM} value={sys.CM_011_SYSM}>
+                                {sys.CM_011_SYSM + ' ' + sys.CM_011_SNAM}
+                            </option>
+                        ))}
+                    </select>
+                    <span>代碼類別:</span>
+                    <input type="text" className="inp_clno" onChange={e => setClno(e.target.value)} />
+                    <input type="button" className="btn_SEL" value="查詢" onClick={handleClick} />
+                    <Link to={'/manage/pga002'} className="btn_ADD">
+                        新增
+                    </Link>
                 </div>
 
                 <div className="showdata">
@@ -42,32 +68,32 @@ const PGA001 = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {codes.map((code, i) => (
+                            {showData.map((data, i) => (
                                 <tr
                                     key={i}
-                                    id={code.CM_006_CLNO}
+                                    id={data.CM_006_CLNO}
                                     className="code"
                                     onClick={() => {
-                                        navigate('/manage/PGA002', { state: codes[i] });
+                                        navigate('/manage/PGA002', { state: data[i] });
                                     }}
                                 >
                                     <td id="data" align="left" colSpan={1}>
-                                        {code.CM_006_SYS}
+                                        {data.CM_006_SYS}
                                     </td>
                                     <td id="data" align="left" colSpan={1}>
-                                        {code.CM_011_SNAM}
+                                        {data.CM_011_SNAM}
                                     </td>
                                     <td id="data" align="left" colSpan={1}>
-                                        {code.CM_006_CLNO}
+                                        {data.CM_006_CLNO}
                                     </td>
                                     <td id="data" align="left" colSpan={1}>
-                                        {code.CM_006_CLNM}
+                                        {data.CM_006_CLNM}
                                     </td>
                                     <td id="data" align="right">
-                                        {code.CM_006_CDLN}
+                                        {data.CM_006_CDLN}
                                     </td>
                                     <td id="data" align="right">
-                                        {code.CM_006_NMLN}
+                                        {data.CM_006_NMLN}
                                     </td>
                                 </tr>
                             ))}
