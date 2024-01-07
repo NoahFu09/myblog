@@ -16,6 +16,7 @@ import CategoryEdit from './pages/Backend/CategoryEdit';
 import PGA001 from './pages/Backend/PGA001';
 import PGA002 from './pages/Backend/PGA002';
 import PGA003 from './pages/Backend/PGA003';
+import PGA004 from './pages/Backend/PGA004';
 
 const Layout = () => {
     return (
@@ -98,6 +99,10 @@ const router = createBrowserRouter([
             {
                 path: '/manage/pga003',
                 element: <PGA003 />,
+            },
+            {
+                path: '/manage/pga004',
+                element: <PGA004 />,
             },
         ],
     },

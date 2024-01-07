@@ -67,7 +67,7 @@ const PGA003 = () => {
                         <input type="text" className="inp_cdno" onChange={e => setCdno(e.target.value)} />
                     </div>
                     <input type="button" value="查詢" className="btn_SEL" onClick={handleClick} />
-                    <Link to={'/manage/pga002'} className="btn_ADD">
+                    <Link to={'/manage/pga004'} className="btn_ADD">
                         新增
                     </Link>
                 </div>

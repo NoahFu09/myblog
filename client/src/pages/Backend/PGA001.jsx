@@ -74,7 +74,7 @@ const PGA001 = () => {
                                     id={data.CM_006_CLNO}
                                     className="code"
                                     onClick={() => {
-                                        navigate('/manage/PGA002', { state: data[i] });
+                                        navigate('/manage/pga002', { state: data });
                                     }}
                                 >
                                     <td id="data" align="left" colSpan={1}>
