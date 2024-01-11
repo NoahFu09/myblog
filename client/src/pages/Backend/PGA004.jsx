@@ -3,23 +3,23 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const PGA004 = () => {
-    const navigate = useNavigate();
     const state = useLocation().state;
-    const CM_006_SYS = state?.CM_006_SYS || 'CM';
-    const CM_006_CLNO = state?.CM_006_CLNO;
-    const CM_006_CLNM = state?.CM_006_CLNM;
-    const CM_006_CDLN = state?.CM_006_CDLN;
-    const CM_006_NMLN = state?.CM_006_NMLN;
+    console.log(state);
+
+    const navigate = useNavigate();
 
     const [res, setRespone] = useState();
+    const [defaultSystem, setDefaultSystem] = useState([]);
+    const [defaultClnos, setDefaultClno] = useState([]);
     const [inputs, setInputs] = useState({
-        sys: CM_006_SYS,
-        clno: CM_006_CLNO,
-        clnm: CM_006_CLNM,
-        cdln: CM_006_CDLN,
-        nmln: CM_006_NMLN,
+        sys: null,
+        clno: null,
+        cdno: null,
+        cdnm: null,
+        cdps: null,
+        cdp1: null,
+        cdp2: null,
     });
-    const [system, setSystem] = useState([]);
     const handleChange = e => {
         //就不用重複寫 const [property, setProperty] = useState();
         setInputs(prev => ({ ...prev, [e.target.name]: e.target.value }));
@@ -28,38 +28,22 @@ const PGA004 = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await axios.get(`/common/getSystem`);
-                setSystem(res.data);
+                //系統別下拉
+                const resDefaultSystem = await axios.get(`/common/getSystem`);
+                setDefaultSystem(resDefaultSystem.data);
+                //代碼類別下拉
+                const resDefaultClno = await axios.get(`/common/getClno${inputs.sys}`);
+                setDefaultClno(resDefaultClno.data);
             } catch (err) {
                 console.log(err);
             }
         };
         fetchData();
-    }, []);
+    }, [inputs.sys, inputs.clno]);
 
-    const handleSubmit = async e => {
-        try {
-            const res = state ? await axios.post(`/common/updateCM006`, inputs) : await axios.post(`/common/insertCM006`, inputs);
-            alert(res.data);
-            navigate('/manage/pga001');
-            // setInputs({ sys: 'CM', clno: '', clnm: '', cdln: '', nmln: '' });
-        } catch (err) {
-            console.log(err);
-            setRespone(err.response.data);
-        }
-    };
+    const handleSubmit = async e => {};
 
-    const handleClickDelete = async e => {
-        e.preventDefault();
-        try {
-            const res = await axios.post(`/common/deleteCM006`, inputs);
-            alert(res.data);
-            navigate('/manage/pga001');
-        } catch (err) {
-            console.log(err);
-            setRespone(err.response.data);
-        }
-    };
+    const handleClickDelete = async e => {};
 
     return (
         <div
@@ -72,32 +56,35 @@ const PGA004 = () => {
             }}
         >
             <div className="container">
-                <h2>(PGA002) 代碼類別維護副程式</h2>
+                <h2>(PGA004) 代碼代號維護副程式</h2>
                 <hr />
 
                 <div className="showdata">
-                    <select name="sys" id="sys" value={inputs.sys} disabled={state ? 'disabled' : ''} onChange={handleChange}>
-                        {system.map((sys, i) => (
-                            <option key={i} id={'sys_' + sys.CM_011_SYSM} value={sys.CM_011_SYSM}>
+                    <select name="sys" onChange={handleChange}>
+                        {defaultSystem.map((sys, i) => (
+                            <option key={i} value={sys.CM_011_SYSM}>
                                 {sys.CM_011_SYSM + ' ' + sys.CM_011_SNAM}
                             </option>
                         ))}
                     </select>
 
-                    <input
-                        type="text"
-                        placeholder="代碼類別代號 (例:A1, 11"
-                        value={inputs.clno}
-                        name="clno"
-                        disabled={state ? 'disabled' : ''}
-                        onChange={handleChange}
-                    />
+                    <select name="clno" onChange={handleChange}>
+                        {defaultClnos.map((clno, i) => (
+                            <option key={i} value={clno.CM_006_CLNO}>
+                                {clno.CM_006_CLNO + ' ' + clno.CM_006_CLNM}
+                            </option>
+                        ))}
+                    </select>
 
-                    <input type="text" placeholder="代碼類別說明 (例:文章分類第一層" value={inputs.clnm} name="clnm" onChange={handleChange} />
+                    <input type="text" placeholder="代碼代號" name="cdno" onChange={handleChange} />
 
-                    <input type="text" placeholder="代碼代號長度 (例:2, 4" value={inputs.cdln} name="cdln" onChange={handleChange} />
+                    <input type="text" placeholder="代碼代號說明" name="cdnm" onChange={handleChange} />
 
-                    <input type="text" placeholder="代碼說明長度 (例:20, 40" value={inputs.nmln} name="nmln" onChange={handleChange} />
+                    <input type="text" placeholder="備註" name="cdps" onChange={handleChange} />
+
+                    <input type="text" placeholder="參數一" name="cdp1" onChange={handleChange} />
+
+                    <input type="text" placeholder="參數二" name="cdp2" onChange={handleChange} />
 
                     {res && <p className="respone">{res}</p>}
                 </div>

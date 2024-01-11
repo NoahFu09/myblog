@@ -7,26 +7,32 @@ const PGA003 = () => {
     const [defaultSystem, setDefaultSystem] = useState([]);
     const [defaultClnos, setDefaultClno] = useState([]);
 
-    const [system, setSystem] = useState('CM');
-    const [clno, setClno] = useState('01');
+    const [system, setSystem] = useState();
+    const [clno, setClno] = useState();
     const [cdno, setCdno] = useState();
     const [showData, setShowData] = useState([]);
 
     useEffect(() => {
         const fetchDefaultData = async () => {
             try {
-                //系統別下拉
+                //預設系統別下拉
                 const resDefaultSystem = await axios.get(`/common/getSystem`);
                 setDefaultSystem(resDefaultSystem.data);
-                //代碼類別下拉
-                const resDefaultClno = await axios.get(`/common/getClno${system}`);
+                //預設代碼類別下拉
+                const resDefaultClno = await axios.get(`/common/getClno${resDefaultSystem.data[0].CM_011_SYSM}`);
                 setDefaultClno(resDefaultClno.data);
             } catch (err) {
                 console.log(err);
             }
         };
         fetchDefaultData();
-    }, [system, clno, cdno]);
+    }, []);
+
+    const handleChange = async e => {
+        //取得代碼類別下拉
+        const resClno = await axios.get(`/common/getClno${e}`);
+        setDefaultClno(resClno.data);
+    };
 
     const handleClick = async e => {
         e.preventDefault();
@@ -48,7 +54,7 @@ const PGA003 = () => {
                 <div className="serach">
                     <div>
                         <span>系統:</span>
-                        <select name="sys" className="sel_sys" onChange={e => setSystem(e.target.value)}>
+                        <select name="sys" className="sel_sys" onChange={e => handleChange(e.target.value)}>
                             {defaultSystem.map((sys, i) => (
                                 <option key={i} id={'sys_' + sys.CM_011_SYSM} value={sys.CM_011_SYSM}>
                                     {sys.CM_011_SYSM + ' ' + sys.CM_011_SNAM}
@@ -56,7 +62,7 @@ const PGA003 = () => {
                             ))}
                         </select>
                         <span>代碼類別:</span>
-                        <select name="clno" className="sel_clno" onChange={e => setClno(e.target.value)}>
+                        <select name="clno" className="sel_clno">
                             {defaultClnos.map((clno, i) => (
                                 <option key={i} value={clno.CM_006_CLNO}>
                                     {clno.CM_006_CLNO + ' ' + clno.CM_006_CLNM}
