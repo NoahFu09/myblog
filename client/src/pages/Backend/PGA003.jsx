@@ -9,7 +9,7 @@ const PGA003 = () => {
 
     const [system, setSystem] = useState();
     const [clno, setClno] = useState();
-    const [cdno, setCdno] = useState();
+    const [cdno, setCdno] = useState('');
     const [showData, setShowData] = useState([]);
 
     useEffect(() => {
@@ -18,9 +18,11 @@ const PGA003 = () => {
                 //預設系統別下拉
                 const resDefaultSystem = await axios.get(`/common/getSystem`);
                 setDefaultSystem(resDefaultSystem.data);
+                setSystem(resDefaultSystem.data[0].CM_011_SYSM);
                 //預設代碼類別下拉
                 const resDefaultClno = await axios.get(`/common/getClno${resDefaultSystem.data[0].CM_011_SYSM}`);
                 setDefaultClno(resDefaultClno.data);
+                setClno(resDefaultClno.data[0].CM_006_CLNO);
             } catch (err) {
                 console.log(err);
             }
@@ -29,9 +31,11 @@ const PGA003 = () => {
     }, []);
 
     const handleChange = async e => {
-        //取得代碼類別下拉
+        //取得新代碼類別下拉
         const resClno = await axios.get(`/common/getClno${e}`);
         setDefaultClno(resClno.data);
+        setSystem(e);
+        setClno(resClno.data[0].CM_006_CLNO);
     };
 
     const handleClick = async e => {
@@ -44,6 +48,7 @@ const PGA003 = () => {
         }
     };
 
+    const dataToPass = { system: system, clno: clno };
     return (
         <div className="PGA003">
             <div className="container">
@@ -62,7 +67,7 @@ const PGA003 = () => {
                             ))}
                         </select>
                         <span>代碼類別:</span>
-                        <select name="clno" className="sel_clno">
+                        <select name="clno" className="sel_clno" onChange={e => setClno(e.target.value)}>
                             {defaultClnos.map((clno, i) => (
                                 <option key={i} value={clno.CM_006_CLNO}>
                                     {clno.CM_006_CLNO + ' ' + clno.CM_006_CLNM}
@@ -72,10 +77,15 @@ const PGA003 = () => {
                         <span>代碼:</span>
                         <input type="text" className="inp_cdno" onChange={e => setCdno(e.target.value)} />
                     </div>
-                    <input type="button" value="查詢" className="btn_SEL" onClick={handleClick} />
-                    <Link to={'/manage/pga004'} className="btn_ADD">
-                        新增
-                    </Link>
+                    <input type="button" value="查詢" className="btn_inq" onClick={handleClick} />
+                    <input
+                        type="button"
+                        value="新增"
+                        className="btn_add"
+                        onClick={() => {
+                            navigate('/manage/pga004', { state: dataToPass });
+                        }}
+                    />
                 </div>
 
                 <div className="showdata">

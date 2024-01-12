@@ -4,13 +4,13 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const PGA004 = () => {
     const state = useLocation().state;
-    console.log(state);
+    const [defaultSystem, setDefaultSystem] = useState([]);
+    const [defaultClnos, setDefaultClno] = useState([]);
 
     const navigate = useNavigate();
 
     const [res, setRespone] = useState();
-    const [defaultSystem, setDefaultSystem] = useState([]);
-    const [defaultClnos, setDefaultClno] = useState([]);
+
     const [inputs, setInputs] = useState({
         sys: null,
         clno: null,
@@ -32,14 +32,14 @@ const PGA004 = () => {
                 const resDefaultSystem = await axios.get(`/common/getSystem`);
                 setDefaultSystem(resDefaultSystem.data);
                 //代碼類別下拉
-                const resDefaultClno = await axios.get(`/common/getClno${inputs.sys}`);
+                const resDefaultClno = await axios.get(`/common/getClno${state?.system}`);
                 setDefaultClno(resDefaultClno.data);
             } catch (err) {
                 console.log(err);
             }
         };
         fetchData();
-    }, [inputs.sys, inputs.clno]);
+    }, [state?.system]);
 
     const handleSubmit = async e => {};
 
@@ -62,7 +62,7 @@ const PGA004 = () => {
                 <div className="showdata">
                     <select name="sys" onChange={handleChange}>
                         {defaultSystem.map((sys, i) => (
-                            <option key={i} value={sys.CM_011_SYSM}>
+                            <option key={i} value={sys.CM_011_SYSM} selected={sys.CM_011_SYSM === state.system}>
                                 {sys.CM_011_SYSM + ' ' + sys.CM_011_SNAM}
                             </option>
                         ))}
@@ -70,7 +70,7 @@ const PGA004 = () => {
 
                     <select name="clno" onChange={handleChange}>
                         {defaultClnos.map((clno, i) => (
-                            <option key={i} value={clno.CM_006_CLNO}>
+                            <option key={i} value={clno.CM_006_CLNO} selected={clno.CM_006_CLNO === state.clno}>
                                 {clno.CM_006_CLNO + ' ' + clno.CM_006_CLNM}
                             </option>
                         ))}
@@ -93,7 +93,7 @@ const PGA004 = () => {
                     <input type="button" id="btn_OKY" className="btn_OKY" value="存檔" onClick={handleSubmit} />
                     <input type="button" id="btn_DEL" className="btn_DEL" value="刪除" onClick={handleClickDelete} />
 
-                    <Link to={'/manage/pga001'} className="btn_NGN">
+                    <Link to={'/manage/pga003'} className="btn_NGN">
                         離開
                     </Link>
                 </div>

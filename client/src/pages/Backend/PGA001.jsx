@@ -51,10 +51,15 @@ const PGA001 = () => {
                     </select>
                     <span>代碼類別:</span>
                     <input type="text" className="inp_clno" onChange={e => setClno(e.target.value)} />
-                    <input type="button" className="btn_SEL" value="查詢" onClick={handleClick} />
-                    <Link to={'/manage/pga002'} className="btn_ADD">
-                        新增
-                    </Link>
+                    <input type="button" className="btn_inq" value="查詢" onClick={handleClick} />
+                    <input
+                        type="button"
+                        className="btn_add"
+                        value="新增"
+                        onClick={() => {
+                            navigate('/manage/pga002');
+                        }}
+                    />
                 </div>
 
                 <div className="showdata">
