@@ -127,6 +127,45 @@ export const getCM007 = (req, res) => {
     });
 };
 
+export const insertCM007 = (req, res) => {
+    const token = req.cookies.access_token;
+    if (!token) return res.status(401).json('Not authenticated!');
+
+    jwt.verify(token, 'jwtkey', (err, userInfo) => {
+        if (err) return res.status(403).json('token is not valid!');
+
+        const q = 'SELECT * FROM cm_007 WHERE CM_007_SYS=? AND CM_007_CLNO=? AND CM_007_CDNO=?';
+
+        db.query(q, [req.body.sys, req.body.clno, req.body.cdno], (err, data) => {
+            if (err) return res.json(err);
+            if (data.length) return res.status(409).json('代碼已存在，請嘗試其它代碼!');
+
+            const q = 'INSERT INTO cm_007 VALUES (?)';
+            const values = [
+                req.body.sys,
+                req.body.clno,
+                req.body.cdno,
+                req.body.cdnm,
+                req.body.cdps,
+                req.body.cdp1,
+                req.body.cdp2,
+                date(),
+                time(),
+                'admin',
+                date(),
+                time(),
+                'admin',
+            ];
+
+            db.query(q, [values], (err, data) => {
+                if (err) return res.json(err);
+
+                return res.status(200).json('新增成功!');
+            });
+        });
+    });
+};
+
 export const now = () => {
     let date_ob = new Date();
 

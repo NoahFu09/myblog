@@ -3,24 +3,30 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const PGA004 = () => {
+    const navigate = useNavigate();
     const state = useLocation().state;
+    const [res, setRespone] = useState();
+
     const [defaultSystem, setDefaultSystem] = useState([]);
     const [defaultClnos, setDefaultClno] = useState([]);
 
-    const navigate = useNavigate();
-
-    const [res, setRespone] = useState();
-
     const [inputs, setInputs] = useState({
-        sys: null,
-        clno: null,
+        sys: state?.system,
+        clno: state?.clno,
         cdno: null,
         cdnm: null,
         cdps: null,
         cdp1: null,
         cdp2: null,
     });
-    const handleChange = e => {
+
+    const handleChange = async e => {
+        if (e.target.name === 'sys') {
+            //取得新代碼類別下拉
+            const resClno = await axios.get(`/common/getClno${e.target.value}`);
+            setDefaultClno(resClno.data);
+        }
+
         //就不用重複寫 const [property, setProperty] = useState();
         setInputs(prev => ({ ...prev, [e.target.name]: e.target.value }));
     };
@@ -41,7 +47,14 @@ const PGA004 = () => {
         fetchData();
     }, [state?.system]);
 
-    const handleSubmit = async e => {};
+    const handleSubmit = async e => {
+        try {
+            const res = await axios.post(`/common/insertCM007`, inputs);
+            setRespone(res.data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     const handleClickDelete = async e => {};
 
