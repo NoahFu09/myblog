@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const PGA003 = () => {
     const navigate = useNavigate();
@@ -36,6 +36,7 @@ const PGA003 = () => {
         setDefaultClno(resClno.data);
         setSystem(e);
         setClno(resClno.data[0].CM_006_CLNO);
+        setShowData([]);
     };
 
     const handleClick = async e => {
@@ -48,7 +49,7 @@ const PGA003 = () => {
         }
     };
 
-    const dataToPass = { system: system, clno: clno };
+    const dataToPass = { CM_007_SYS: system, CM_006_CLNO: clno };
     return (
         <div className="PGA003">
             <div className="container">
@@ -67,7 +68,7 @@ const PGA003 = () => {
                             ))}
                         </select>
                         <span>代碼類別:</span>
-                        <select name="clno" className="sel_clno" onChange={e => setClno(e.target.value)}>
+                        <select name="clno" className="sel_clno" onChange={e => setClno(e.target.value) + setShowData([])}>
                             {defaultClnos.map((clno, i) => (
                                 <option key={i} value={clno.CM_006_CLNO}>
                                     {clno.CM_006_CLNO + ' ' + clno.CM_006_CLNM}
@@ -108,7 +109,7 @@ const PGA003 = () => {
                                     id={data.CM_006_CLNO}
                                     className="code"
                                     onClick={() => {
-                                        navigate('/manage/PGA004', { state: data[i] });
+                                        navigate('/manage/pga004', { state: data });
                                     }}
                                 >
                                     <td id="data" align="left" colSpan={1}>

@@ -166,6 +166,33 @@ export const insertCM007 = (req, res) => {
     });
 };
 
+export const updateCM007 = (req, res) => {
+    const token = req.cookies.access_token;
+    if (!token) return res.status(401).json('沒有經過授權!');
+
+    jwt.verify(token, 'jwtkey', (err, userInfo) => {
+        if (err) return res.status(401).json('授權未經過許可!');
+
+        const q = 'SELECT * FROM blog.cm_007 WHERE CM_007_SYS=? AND CM_007_CLNO=? AND CM_007_CDNO=?';
+        const values = [req.body.sys, req.body.clno, req.body.cdno];
+
+        db.query(q, [...values], (err, data) => {
+            if (err) return res.json(err);
+            if (!data.length)
+                return res.status(409).json('代碼類別: ' + req.body.sys + ' / ' + req.body.clno + '/' + req.body.cdno + ' 不存在，請檢查謝謝!');
+
+            const q =
+                'UPDATE blog.cm_007 SET CM_007_CDNM=?, CM_007_CDPS=?, CM_007_CDP1=?, CM_007_CDP2=?, CM_007_UPDT=?, CM_007_UPTM=? WHERE CM_007_SYS=? AND CM_007_CLNO=? AND CM_007_CDNO=?';
+            const values = [req.body.cdnm, req.body.cdps, req.body.cdp1, req.body.cdp2, date(), time(), req.body.sys, req.body.clno, req.body.cdno];
+
+            db.query(q, [...values], (err, data) => {
+                if (err) return res.status(500).send(err);
+                return res.status(200).json('更新成功!');
+            });
+        });
+    });
+};
+
 export const now = () => {
     let date_ob = new Date();
 

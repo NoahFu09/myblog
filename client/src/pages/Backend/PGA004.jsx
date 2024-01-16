@@ -6,18 +6,16 @@ const PGA004 = () => {
     const navigate = useNavigate();
     const state = useLocation().state;
     const [res, setRespone] = useState();
-
     const [defaultSystem, setDefaultSystem] = useState([]);
     const [defaultClnos, setDefaultClno] = useState([]);
-
     const [inputs, setInputs] = useState({
-        sys: state?.system,
-        clno: state?.clno,
-        cdno: null,
-        cdnm: null,
-        cdps: null,
-        cdp1: null,
-        cdp2: null,
+        sys: state ? state.CM_007_SYS : ' ',
+        clno: state ? state.CM_007_CLNO : ' ',
+        cdno: state ? state.CM_007_CDNO : ' ',
+        cdnm: state ? state.CM_007_CDNM : ' ',
+        cdps: state ? state.CM_007_CDPS : ' ',
+        cdp1: state ? state.CM_007_CDP1 : ' ',
+        cdp2: state ? state.CM_007_CDP2 : 0,
     });
 
     const handleChange = async e => {
@@ -38,20 +36,22 @@ const PGA004 = () => {
                 const resDefaultSystem = await axios.get(`/common/getSystem`);
                 setDefaultSystem(resDefaultSystem.data);
                 //代碼類別下拉
-                const resDefaultClno = await axios.get(`/common/getClno${state?.system}`);
+                const resDefaultClno = await axios.get(`/common/getClno${state?.CM_007_SYS}`);
                 setDefaultClno(resDefaultClno.data);
             } catch (err) {
                 console.log(err);
             }
         };
         fetchData();
-    }, [state?.system]);
+    }, [state?.CM_007_SYS]);
 
     const handleSubmit = async e => {
         try {
-            const res = await axios.post(`/common/insertCM007`, inputs);
+            const res = state.CM_007_CDNO ? await axios.post(`/common/updateCM007`, inputs) : await axios.post(`/common/insertCM007`, inputs);
             setRespone(res.data);
+            navigate('/manage/pga003');
         } catch (err) {
+            setRespone(err.response.data);
             console.log(err);
         }
     };
@@ -73,31 +73,38 @@ const PGA004 = () => {
                 <hr />
 
                 <div className="showdata">
-                    <select name="sys" onChange={handleChange}>
+                    <select name="sys" disabled={state.CM_007_CDNO} onChange={handleChange}>
                         {defaultSystem.map((sys, i) => (
-                            <option key={i} value={sys.CM_011_SYSM} selected={sys.CM_011_SYSM === state.system}>
+                            <option key={i} value={sys.CM_011_SYSM} selected={sys.CM_011_SYSM === state.CM_007_SYS}>
                                 {sys.CM_011_SYSM + ' ' + sys.CM_011_SNAM}
                             </option>
                         ))}
                     </select>
 
-                    <select name="clno" onChange={handleChange}>
+                    <select name="clno" disabled={state.CM_007_CDNO} onChange={handleChange}>
                         {defaultClnos.map((clno, i) => (
-                            <option key={i} value={clno.CM_006_CLNO} selected={clno.CM_006_CLNO === state.clno}>
+                            <option key={i} value={clno.CM_006_CLNO} selected={clno.CM_006_CLNO === state.CM_006_CLNO}>
                                 {clno.CM_006_CLNO + ' ' + clno.CM_006_CLNM}
                             </option>
                         ))}
                     </select>
 
-                    <input type="text" placeholder="代碼代號" name="cdno" onChange={handleChange} />
+                    <input
+                        type="text"
+                        placeholder="代碼代號"
+                        name="cdno"
+                        defaultValue={inputs.cdno}
+                        disabled={state.CM_007_CDNO}
+                        onChange={handleChange}
+                    />
 
-                    <input type="text" placeholder="代碼代號說明" name="cdnm" onChange={handleChange} />
+                    <input type="text" placeholder="代碼代號說明" name="cdnm" defaultValue={inputs.cdnm} onChange={handleChange} />
 
-                    <input type="text" placeholder="備註" name="cdps" onChange={handleChange} />
+                    <input type="text" placeholder="備註" name="cdps" defaultValue={inputs.cdps} onChange={handleChange} />
 
-                    <input type="text" placeholder="參數一" name="cdp1" onChange={handleChange} />
+                    <input type="text" placeholder="參數一" name="cdp1" defaultValue={inputs.cdp1} onChange={handleChange} />
 
-                    <input type="text" placeholder="參數二" name="cdp2" onChange={handleChange} />
+                    <input type="text" placeholder="參數二" name="cdp2" defaultValue={inputs.cdp2} onChange={handleChange} />
 
                     {res && <p className="respone">{res}</p>}
                 </div>
