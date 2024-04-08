@@ -9,8 +9,6 @@ const PGA004 = () => {
     const [defaultSystem, setDefaultSystem] = useState([]);
     const [defaultClnos, setDefaultClno] = useState([]);
     const [inputs, setInputs] = useState({
-        sys: state ? state.CM_007_SYS : ' ',
-        clno: state ? state.CM_007_CLNO : ' ',
         cdno: state ? state.CM_007_CDNO : ' ',
         cdnm: state ? state.CM_007_CDNM : ' ',
         cdps: state ? state.CM_007_CDPS : ' ',
@@ -73,17 +71,17 @@ const PGA004 = () => {
                 <hr />
 
                 <div className="showdata">
-                    <select name="sys" disabled={state.CM_007_CDNO} onChange={handleChange}>
+                    <select name="sys" value={state.CM_007_SYS} onChange={handleChange}>
                         {defaultSystem.map((sys, i) => (
-                            <option key={i} value={sys.CM_011_SYSM} selected={sys.CM_011_SYSM === state.CM_007_SYS}>
+                            <option key={i} value={sys.CM_011_SYSM}>
                                 {sys.CM_011_SYSM + ' ' + sys.CM_011_SNAM}
                             </option>
                         ))}
                     </select>
 
-                    <select name="clno" disabled={state.CM_007_CDNO} onChange={handleChange}>
+                    <select name="clno" value={state.CM_006_CLNO} onChange={handleChange}>
                         {defaultClnos.map((clno, i) => (
-                            <option key={i} value={clno.CM_006_CLNO} selected={clno.CM_006_CLNO === state.CM_006_CLNO}>
+                            <option key={i} value={clno.CM_006_CLNO}>
                                 {clno.CM_006_CLNO + ' ' + clno.CM_006_CLNM}
                             </option>
                         ))}
